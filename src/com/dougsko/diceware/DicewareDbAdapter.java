@@ -25,9 +25,9 @@ public class DicewareDbAdapter {
     private static final String DATABASE_CREATE =
     	"CREATE TABLE words (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
     	+ "number VARCHAR(50), word VARCHAR(50));";
-        //"create table notes (_id integer primary key autoincrement, "
-        //+ "title text not null, body text not null);";
+        
 
+    private static final String DATABASE_PATH = "/data/data/com.dougsko.diceware/";
     private static final String DATABASE_NAME = "diceware.db";
     private static final String DATABASE_TABLE = "words";
     private static final int DATABASE_VERSION = 2;
@@ -42,7 +42,6 @@ public class DicewareDbAdapter {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-
             db.execSQL(DATABASE_CREATE);
         }
         
@@ -50,7 +49,7 @@ public class DicewareDbAdapter {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
+            db.execSQL("DROP TABLE IF EXISTS words");
             onCreate(db);
         }
     }
