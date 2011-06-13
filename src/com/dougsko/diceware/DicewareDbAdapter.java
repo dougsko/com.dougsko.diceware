@@ -61,7 +61,7 @@ public class DicewareDbAdapter {
         // this is crap i copied.
         public void createDataBase() throws IOException{
         	boolean dbExist = checkDataBase();
-        	if(false){
+        	if(dbExist){
         		// do nothing, db exists
         	}
         	else{
@@ -169,6 +169,9 @@ public class DicewareDbAdapter {
      * @param roll id of note to retrieve
      * @return Cursor positioned to matching note, if found
      * @throws SQLException if note could not be found/retrieved
+     * 
+     * Do this SQL statement:
+     *   select word from words where number = 11112;
      */
     public Cursor fetchWord(String roll) throws SQLException {
 

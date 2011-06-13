@@ -2,4 +2,19 @@
 <resources>
     <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
+    <string name="output_label">Output:</string>
+    <string name="output">foo</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="mode_prompt">Choose a mode</string>
+    <string-array name="modes_array">
+        <item>Words</item>
+        <item>ASCII</item>
+        <item>Alphanumeric</item>
+        <item>Numbers</item>
+    </string-array>
 </resources>
