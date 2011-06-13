@@ -23,6 +23,7 @@ public class DicewareDbAdapter {
 
     private static final String TAG = "DicewareDbAdapter";
     private DatabaseHelper mDbHelper;
+	private static Context mCtx;
     private static SQLiteDatabase mDb;
 
     /**
@@ -38,12 +39,7 @@ public class DicewareDbAdapter {
     private static final String DATABASE_TABLE = "words";
     private static final int DATABASE_VERSION = 2;
 
-    private final Context mCtx;
-
-    private static class DatabaseHelper extends SQLiteOpenHelper {
-
-        private Context mCtx;
-
+    public static class DatabaseHelper extends SQLiteOpenHelper {
 
 		DatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,7 +61,7 @@ public class DicewareDbAdapter {
         // this is crap i copied.
         public void createDataBase() throws IOException{
         	boolean dbExist = checkDataBase();
-        	if(dbExist){
+        	if(false){
         		// do nothing, db exists
         	}
         	else{
@@ -132,7 +128,7 @@ public class DicewareDbAdapter {
      * @param ctx the Context within which to work
      */
     public DicewareDbAdapter(Context ctx) {
-        this.mCtx = ctx;
+        DicewareDbAdapter.mCtx = ctx;
     }
 
     /**
@@ -147,7 +143,6 @@ public class DicewareDbAdapter {
     public DicewareDbAdapter open() throws SQLException {
         mDbHelper = new DatabaseHelper(mCtx);
         //mDb = mDbHelper.getReadableDatabase();
-        //return this;
         
         // this is mine
         try {
@@ -171,16 +166,16 @@ public class DicewareDbAdapter {
     /**
      * Return a Cursor positioned at the note that matches the given rowId
      * 
-     * @param rowId id of note to retrieve
+     * @param roll id of note to retrieve
      * @return Cursor positioned to matching note, if found
      * @throws SQLException if note could not be found/retrieved
      */
-    public Cursor fetchWord(long rowId) throws SQLException {
+    public Cursor fetchWord(String roll) throws SQLException {
 
         Cursor mCursor =
 
             mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_NUMBER, KEY_WORD}, KEY_ROWID + "=" + rowId, null,
+                    KEY_NUMBER, KEY_WORD}, KEY_ROWID + "=" + roll, null,
                     null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
