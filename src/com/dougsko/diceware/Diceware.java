@@ -2,29 +2,46 @@ package com.dougsko.diceware;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.SimpleCursorAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Diceware extends Activity {
     /** Called when the activity is first created. */
 
+	private EditText mOutputText;
 	private DicewareDbAdapter mDbHelper;
+	private int mode; 
+	private String roll;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        roll = "";
+        
+        mOutputText = (EditText) findViewById(R.id.output);
+        Button button_one = (Button) findViewById(R.id.one);
+        Button button_two = (Button) findViewById(R.id.two);
+        Button button_three = (Button) findViewById(R.id.three);
+        Button button_four = (Button) findViewById(R.id.four);
+        Button button_five = (Button) findViewById(R.id.five);
+        Button button_six = (Button) findViewById(R.id.six);
+        
         mDbHelper = new DicewareDbAdapter(this);
         mDbHelper.open();
         
+        // set up mode spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.modes_array, android.R.layout.simple_spinner_item);
@@ -32,15 +49,87 @@ public class Diceware extends Activity {
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
         
-    }
+        
+        // button 1 callback
+        button_one.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("1");
+                checkRoll();
+            }            
+        });
+        
+     // button 2 callback
+        button_two.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("2");
+                checkRoll();
+            }            
+        });
+        
+     // button 3 callback
+        button_three.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("3");
+                checkRoll();
+            }            
+        });
+        
+     // button 4 callback
+        button_four.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("4");
+                checkRoll();
+            }            
+        });
+        
+     // button 5 callback
+        button_five.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("5");
+                checkRoll();
+            }            
+        });
+        
+     // button 6 callback
+        button_six.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("6");
+                checkRoll();
+            }            
+        });
+    
+	}
+		
+	
+	
 	
 	// The callback for the mode selector spinner.
 	public class MyOnItemSelectedListener implements OnItemSelectedListener {
+		
+		String numberOfRolls;
 
 	    public void onItemSelected(AdapterView<?> parent,
 	        View view, int pos, long id) {
-	      Toast.makeText(parent.getContext(), "The mode is " +
-	          parent.getItemAtPosition(pos).toString(), Toast.LENGTH_LONG).show();
+	    	switch(pos){
+	    	case 0:
+	    		numberOfRolls = "5";
+	    		break;
+	    	case 1:
+	    		numberOfRolls = "3";
+	    		break;
+	    	case 2:
+	    		numberOfRolls = "2";
+	    		break;
+	    	case 3:
+	    		numberOfRolls = "2";
+	    		break;
+	    	}
+	    	Toast.makeText(parent.getContext(), "Roll " +
+	    			numberOfRolls + " times", Toast.LENGTH_LONG).show();
+	      //mode = parent.getItemAtPosition(pos).toString();
+	      mode = pos;
+	      roll = "";
+	      mOutputText.setText("");
 	    }
 
 	    public void onNothingSelected(AdapterView parent) {
@@ -48,16 +137,68 @@ public class Diceware extends Activity {
 	    }
 	}
     
-    private void filldata() {
-    	Cursor dicewareCursor = mDbHelper.fetchWord("11111");
+	// the modes equate to the index of the modes_array in strings.xml
+	private void checkRoll(){
+		switch (mode) {
+		case 0:
+			if( roll.length() == 5) {
+				getWord();
+			}
+			break;
+		case 1:
+			break;
+		case 2:
+			if ( roll.length() == 2) {
+				getAlphaNumeric();
+			}
+			break;
+		case 3:
+			int i = Integer.parseInt(roll);
+			Context context = getApplicationContext();
+			if ( roll.substring(0, 1) == "6"){
+				Toast.makeText(context, "Roll again", Toast.LENGTH_LONG).show();
+				roll = "";
+				break;
+			}
+			if(roll.length() == 2){
+				String first_digit_string = roll.substring(0, 1);
+				String second_digit_string = roll.substring(1);
+				
+				int first_digit_int = Integer.parseInt(first_digit_string);
+				int second_digit_int = Integer.parseInt(second_digit_string);
+				
+				// is the second roll even? if so, add 5 to first roll. 10 becomes 0.
+				if(second_digit_int % 2 == 0){
+					int output_int = first_digit_int + 5;
+					String output_string = Integer.toString(output_int);
+					mOutputText.setText(output_string.substring(output_string.length() - 1));
+					roll = "";
+				}
+				else{
+					mOutputText.setText(first_digit_string);
+					roll = "";
+				}
+			}
+			break;
+		}
+	}
+	
+    private void getWord() {
+    	Cursor dicewareCursor = mDbHelper.fetchWord(roll);
         startManagingCursor(dicewareCursor);
         
-        String[] from = new String[]{DicewareDbAdapter.KEY_WORD};
-        int[] to = new int[]{R.id.output_label};
+        mOutputText.setText(dicewareCursor.getString(
+        		dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_WORD)));
         
-        SimpleCursorAdapter diceware = 
-            new SimpleCursorAdapter(this, R.layout.main, dicewareCursor, from, to);
-        //setAdapter(diceware);
-        
+        roll = "";
+    }
+    
+    private void getAlphaNumeric() {
+    	Cursor dicewareCursor = mDbHelper.fetchAlphaNumeric(roll);
+    	startManagingCursor(dicewareCursor);
+    	
+    	mOutputText.setText(dicewareCursor.getString(
+    			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR)));
+    	roll = "";
     }
 }

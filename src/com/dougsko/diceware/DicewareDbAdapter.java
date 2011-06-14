@@ -20,6 +20,7 @@ public class DicewareDbAdapter {
 	public static final String KEY_NUMBER = "number";
     public static final String KEY_WORD = "word";
     public static final String KEY_ROWID = "_id";
+    public static final String KEY_CHAR = "char";
 
     private static final String TAG = "DicewareDbAdapter";
     private DatabaseHelper mDbHelper;
@@ -28,15 +29,17 @@ public class DicewareDbAdapter {
 
     /**
      * Database creation sql statement
-     */
+     *
     private static final String DATABASE_CREATE =
     	"CREATE TABLE words (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
     	+ "number VARCHAR(50), word VARCHAR(50));";
+    **/
         
 
     private static final String DATABASE_PATH = "/data/data/com.dougsko.diceware/databases/";
     private static final String DATABASE_NAME = "diceware.db";
     private static final String DATABASE_TABLE = "words";
+    
     private static final int DATABASE_VERSION = 2;
 
     public static class DatabaseHelper extends SQLiteOpenHelper {
@@ -61,6 +64,8 @@ public class DicewareDbAdapter {
         // this is crap i copied.
         public void createDataBase() throws IOException{
         	boolean dbExist = checkDataBase();
+        	// this is for forcing an update to the database
+        	//if(false) {
         	if(dbExist){
         		// do nothing, db exists
         	}
@@ -177,14 +182,34 @@ public class DicewareDbAdapter {
 
         Cursor mCursor =
 
-            mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_NUMBER, KEY_WORD}, KEY_ROWID + "=" + roll, null,
-                    null, null, null, null);
+            mDb.query(true, "words", new String[] {KEY_NUMBER, KEY_WORD},
+                     KEY_NUMBER + "=" + roll, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
         return mCursor;
 
     }
+    
+    public Cursor fetchAlphaNumeric(String roll) throws SQLException {
+    	Cursor mCursor =
+    		mDb.query(true, "alphanumerics", new String[] {KEY_NUMBER, KEY_CHAR},
+    				KEY_NUMBER + "=" + roll, null, null, null, null, null);
+    	if (mCursor != null) {
+    		mCursor.moveToFirst();
+    	}
+    	return mCursor;
+    }
+    
+    public Cursor fetchNumber(String roll) throws SQLException {
+    	Cursor mCursor =
+    		mDb.query(true, "numbers", new String[] {KEY_NUMBER, KEY_CHAR},
+    				KEY_NUMBER + "=" + roll, null, null, null, null, null);
+    	if (mCursor != null) {
+    		mCursor.moveToFirst();
+    	}
+    	return mCursor;
+    }
+    
 
 }
