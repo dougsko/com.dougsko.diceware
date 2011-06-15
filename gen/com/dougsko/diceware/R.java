@@ -22,6 +22,7 @@ public final class R {
         public static final int one=0x7f060002;
         public static final int output=0x7f060001;
         public static final int output_label=0x7f060000;
+        public static final int randomOrg=0x7f060009;
         public static final int six=0x7f060007;
         public static final int spinner=0x7f060008;
         public static final int three=0x7f060004;
@@ -39,6 +40,7 @@ public final class R {
         public static final int one=0x7f040004;
         public static final int output=0x7f040003;
         public static final int output_label=0x7f040002;
+        public static final int randomOrg=0x7f04000b;
         public static final int six=0x7f040009;
         public static final int three=0x7f040006;
         public static final int two=0x7f040005;

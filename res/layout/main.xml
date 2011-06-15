@@ -71,4 +71,13 @@
         android:layout_marginTop="50dip"
         android:prompt="@string/mode_prompt"
     />
+    <Button
+    	android:id="@+id/randomOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dip"
+        android:layout_marginTop="40dip"
+        android:layout_below="@id/spinner"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="@string/randomOrg" />
 </RelativeLayout>

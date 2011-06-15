@@ -38,7 +38,6 @@ public class DicewareDbAdapter {
 
     private static final String DATABASE_PATH = "/data/data/com.dougsko.diceware/databases/";
     private static final String DATABASE_NAME = "diceware.db";
-    private static final String DATABASE_TABLE = "words";
     
     private static final int DATABASE_VERSION = 2;
 
@@ -204,6 +203,16 @@ public class DicewareDbAdapter {
     public Cursor fetchNumber(String roll) throws SQLException {
     	Cursor mCursor =
     		mDb.query(true, "numbers", new String[] {KEY_NUMBER, KEY_CHAR},
+    				KEY_NUMBER + "=" + roll, null, null, null, null, null);
+    	if (mCursor != null) {
+    		mCursor.moveToFirst();
+    	}
+    	return mCursor;
+    }
+    
+    public Cursor fetchAscii(String roll) throws SQLException {
+    	Cursor mCursor =
+    		mDb.query(true, "asciis", new String[] {KEY_NUMBER, KEY_CHAR},
     				KEY_NUMBER + "=" + roll, null, null, null, null, null);
     	if (mCursor != null) {
     		mCursor.moveToFirst();

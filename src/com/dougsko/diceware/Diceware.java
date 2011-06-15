@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -37,6 +36,7 @@ public class Diceware extends Activity {
         Button button_four = (Button) findViewById(R.id.four);
         Button button_five = (Button) findViewById(R.id.five);
         Button button_six = (Button) findViewById(R.id.six);
+        Button randomOrg = (Button) findViewById(R.id.randomOrg);
         
         mDbHelper = new DicewareDbAdapter(this);
         mDbHelper.open();
@@ -97,12 +97,18 @@ public class Diceware extends Activity {
                 checkRoll();
             }            
         });
+        
+        // randomOrg button callback
+        // http get: http://www.random.org/integers/?num=6&min=1&max=6&col=1&base=10&format=plain&rnd=new
+        randomOrg.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                roll = roll.concat("6");
+                checkRoll();
+            }            
+        });
     
 	}
 		
-	
-	
-	
 	// The callback for the mode selector spinner.
 	public class MyOnItemSelectedListener implements OnItemSelectedListener {
 		
@@ -126,13 +132,12 @@ public class Diceware extends Activity {
 	    	}
 	    	Toast.makeText(parent.getContext(), "Roll " +
 	    			numberOfRolls + " times", Toast.LENGTH_LONG).show();
-	      //mode = parent.getItemAtPosition(pos).toString();
 	      mode = pos;
 	      roll = "";
 	      mOutputText.setText("");
 	    }
 
-	    public void onNothingSelected(AdapterView parent) {
+	    public void onNothingSelected(AdapterView<?> parent) {
 	      // Do nothing.
 	    }
 	}
@@ -146,6 +151,9 @@ public class Diceware extends Activity {
 			}
 			break;
 		case 1:
+			if (roll.length() == 3) {
+				getAscii();
+			}
 			break;
 		case 2:
 			if ( roll.length() == 2) {
@@ -153,7 +161,6 @@ public class Diceware extends Activity {
 			}
 			break;
 		case 3:
-			int i = Integer.parseInt(roll);
 			Context context = getApplicationContext();
 			if ( roll.substring(0, 1) == "6"){
 				Toast.makeText(context, "Roll again", Toast.LENGTH_LONG).show();
@@ -199,6 +206,22 @@ public class Diceware extends Activity {
     	
     	mOutputText.setText(dicewareCursor.getString(
     			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR)));
+    	roll = "";
+    }
+    
+    private void getAscii() {
+    	Context context = getApplicationContext();
+    	Cursor dicewareCursor = mDbHelper.fetchAscii(roll);
+    	startManagingCursor(dicewareCursor);
+    	
+    	String output = dicewareCursor.getString(
+    			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR));
+    	if(output.length() > 1) {
+    		Toast.makeText(context, "Please roll again", Toast.LENGTH_LONG).show();
+    	}
+    	else {
+    		mOutputText.setText(output);
+    	}
     	roll = "";
     }
 }

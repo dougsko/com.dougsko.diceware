@@ -17,4 +17,5 @@
         <item>Alphanumeric</item>
         <item>Numbers</item>
     </string-array>
+    <string name="randomOrg">Random.org</string>
 </resources>
