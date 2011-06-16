@@ -17,16 +17,17 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int five=0x7f060006;
-        public static final int four=0x7f060005;
-        public static final int one=0x7f060002;
+        public static final int five=0x7f060007;
+        public static final int four=0x7f060006;
+        public static final int one=0x7f060003;
         public static final int output=0x7f060001;
         public static final int output_label=0x7f060000;
-        public static final int randomOrg=0x7f060009;
-        public static final int six=0x7f060007;
-        public static final int spinner=0x7f060008;
-        public static final int three=0x7f060004;
-        public static final int two=0x7f060003;
+        public static final int randomOrg=0x7f06000a;
+        public static final int row1=0x7f060002;
+        public static final int six=0x7f060008;
+        public static final int spinner=0x7f060009;
+        public static final int three=0x7f060005;
+        public static final int two=0x7f060004;
     }
     public static final class layout {
         public static final int main=0x7f030000;

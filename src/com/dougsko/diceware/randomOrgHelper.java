@@ -16,9 +16,10 @@ public class randomOrgHelper {
 
 	public static String getNumbers(){
 		String url = "http://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain&rnd=new";
-    	
+		String responseString = null;
     	HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = null;
+        
 		try {
 			response = httpclient.execute(new HttpGet(url));
 		} catch (ClientProtocolException e) {
@@ -44,8 +45,7 @@ public class randomOrgHelper {
 				e.printStackTrace();
 			}
 			
-            String responseString = out.toString();
-            return responseString.replace("\n", "");
+            responseString = out.toString().replace("\n", "");
             
         } else{
             //Closes the connection.
@@ -65,7 +65,6 @@ public class randomOrgHelper {
 				e.printStackTrace();
 			}
         }
-        return "NULL";
+		return responseString;
 	}
-
 }

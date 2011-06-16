@@ -1,82 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent" 
+    android:padding="10dp">
+    
     <TextView
         android:id="@+id/output_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="center"
         android:text="@string/output_label"/>
+    <!--     
     <EditText
         android:id="@+id/output"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
         android:layout_below="@id/output_label"/>
-    <Button
-        android:id="@+id/one"
-        android:layout_width="wrap_content"
+    -->
+    <TextView
+    	android:id="@+id/output"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:text=" "
+        android:layout_marginBottom="20sp"
+        android:layout_marginTop="10sp"
+        android:layout_below="@id/output_label" />
+        
+    <TableLayout 
+    	android:id="@+id/row1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
         android:layout_below="@id/output"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="30dip"
-        android:layout_marginLeft="30dip"
-        android:text="@string/one" />
-    <Button
-    	android:id="@+id/two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dip"
-        android:layout_toRightOf="@id/one"
-        android:layout_alignTop="@id/one"
-        android:text="@string/two" />
-    <Button
-    	android:id="@+id/three"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dip"
-        android:layout_toRightOf="@id/two"
-        android:layout_alignTop="@id/two"
-        android:text="@string/three" />
-    <Button
-    	android:id="@+id/four"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dip"
-        android:layout_toRightOf="@id/three"
-        android:layout_alignTop="@id/three"
-        android:text="@string/four" />
-    <Button
-    	android:id="@+id/five"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dip"
-        android:layout_toRightOf="@id/four"
-        android:layout_alignTop="@id/four"
-        android:text="@string/five" />
-    <Button
-    	android:id="@+id/six"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dip"
-        android:layout_toRightOf="@id/five"
-        android:layout_alignTop="@id/five"
-        android:text="@string/six" />
+        android:layout_weight="1">
+       	<TableRow
+        	android:layout_weight="1">
+    		<Button
+        		android:id="@+id/one"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/one" />
+    		<Button
+    			android:id="@+id/two"
+    			android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/two" />
+    		<Button
+    			android:id="@+id/three"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/three" />
+    		<Button
+    			android:id="@+id/four"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/four" />
+    		<Button
+    			android:id="@+id/five"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/five" />
+    		<Button
+    			android:id="@+id/six"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/six" />
+        </TableRow>
+    </TableLayout>
     <Spinner 
         android:id="@+id/spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/one"
+        android:layout_below="@id/row1"
         android:layout_marginTop="50dip"
         android:prompt="@string/mode_prompt"
     />
     <Button
     	android:id="@+id/randomOrg"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dip"
-        android:layout_marginTop="40dip"
         android:layout_below="@id/spinner"
-        android:layout_gravity="center_horizontal|bottom"
-        android:text="@string/randomOrg" />
+        android:layout_marginTop="20sp"
+        android:text="@string/randomOrg" 
+        android:layout_centerHorizontal="true" 
+        android:layout_centerVertical="true" />
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.dougsko.diceware;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +9,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Diceware extends Activity {
     /** Called when the activity is first created. */
 
-	private EditText mOutputText;
+	private TextView mOutputText;
 	private DicewareDbAdapter mDbHelper;
 	private int mode; 
 	private String roll;
@@ -29,7 +28,7 @@ public class Diceware extends Activity {
         
         roll = "";
         
-        mOutputText = (EditText) findViewById(R.id.output);
+        mOutputText = (TextView) findViewById(R.id.output);
         Button button_one = (Button) findViewById(R.id.one);
         Button button_two = (Button) findViewById(R.id.two);
         Button button_three = (Button) findViewById(R.id.three);
@@ -108,6 +107,7 @@ public class Diceware extends Activity {
             	for(int i = 0; i <= numbers.length(); i++){
             		roll = numbers.substring(0,i);
             		checkRoll();
+            		roll = "";
             	}
             }            
         });
@@ -166,9 +166,8 @@ public class Diceware extends Activity {
 			}
 			break;
 		case 3:
-			Context context = getApplicationContext();
-			if ( roll.substring(0, 1) == "6"){
-				Toast.makeText(context, "Roll again", Toast.LENGTH_LONG).show();
+			if ( roll.substring(0) == "6"){
+				Toast.makeText(Diceware.this, "Roll again", Toast.LENGTH_LONG).show();
 				roll = "";
 				break;
 			}
@@ -215,14 +214,13 @@ public class Diceware extends Activity {
     }
     
     private void getAscii() {
-    	Context context = getApplicationContext();
     	Cursor dicewareCursor = mDbHelper.fetchAscii(roll);
     	startManagingCursor(dicewareCursor);
     	
     	String output = dicewareCursor.getString(
     			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR));
     	if(output.length() > 1) {
-    		Toast.makeText(context, "Please roll again", Toast.LENGTH_LONG).show();
+    		Toast.makeText(Diceware.this, "Please roll again", Toast.LENGTH_LONG).show();
     	}
     	else {
     		mOutputText.setText(output);
