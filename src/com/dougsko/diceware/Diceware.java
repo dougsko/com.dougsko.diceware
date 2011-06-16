@@ -98,12 +98,17 @@ public class Diceware extends Activity {
             }            
         });
         
-        // randomOrg button callback
-        // http get: http://www.random.org/integers/?num=6&min=1&max=6&col=1&base=10&format=plain&rnd=new
+        /** randomOrg button callback
+         * http get: http://www.random.org/integers/?num=6&min=1&max=6&col=1&base=10&format=plain&rnd=new
+         * get 5 numbers, iterate through them and append each to roll and do checkRoll().
+         */
         randomOrg.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                roll = roll.concat("6");
-                checkRoll();
+            	String numbers = randomOrgHelper.getNumbers();
+            	for(int i = 0; i <= numbers.length(); i++){
+            		roll = numbers.substring(0,i);
+            		checkRoll();
+            	}
             }            
         });
     

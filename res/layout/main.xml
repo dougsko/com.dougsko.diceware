@@ -12,8 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
-        android:layout_below="@id/output_label"
-        android:text="@string/output"/>
+        android:layout_below="@id/output_label"/>
     <Button
         android:id="@+id/one"
         android:layout_width="wrap_content"

@@ -3,7 +3,6 @@
     <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
     <string name="output_label">Output:</string>
-    <string name="output">foo</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
