@@ -17,4 +17,11 @@
         <item>Numbers</item>
     </string-array>
     <string name="randomOrg">Random.org</string>
+    <string name="roll_again">Roll again</string>
+    <string name="times_to_roll">Roll %1$s times</string>
+    <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
+    <string name="about">Diceware is a secure password generation method developed by
+        			Arnold G. Reinhold.  This helper application was written and is 
+        			maintained by Doug Prostko.</string>
+        			
 </resources>

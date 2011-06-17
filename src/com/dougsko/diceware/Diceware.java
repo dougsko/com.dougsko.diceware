@@ -2,8 +2,16 @@ package com.dougsko.diceware;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -47,6 +55,8 @@ public class Diceware extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
+        
+        
         
         
         // button 1 callback
@@ -135,8 +145,9 @@ public class Diceware extends Activity {
 	    		numberOfRolls = "2";
 	    		break;
 	    	}
-	    	Toast.makeText(parent.getContext(), "Roll " +
-	    			numberOfRolls + " times", Toast.LENGTH_LONG).show();
+	    	Toast.makeText(parent.getContext(), 
+	    			String.format(getString(R.string.times_to_roll),numberOfRolls), 
+	    			Toast.LENGTH_LONG).show();
 	      mode = pos;
 	      roll = "";
 	      mOutputText.setText("");
@@ -167,7 +178,7 @@ public class Diceware extends Activity {
 			break;
 		case 3:
 			if ( roll.substring(0) == "6"){
-				Toast.makeText(Diceware.this, "Roll again", Toast.LENGTH_LONG).show();
+				Toast.makeText(Diceware.this, getString(R.string.roll_again), Toast.LENGTH_LONG).show();
 				roll = "";
 				break;
 			}
@@ -219,7 +230,7 @@ public class Diceware extends Activity {
     	
     	String output = dicewareCursor.getString(
     			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR));
-    	if(output.length() > 1) {
+    	if(output.length() > 2) {
     		Toast.makeText(Diceware.this, "Please roll again", Toast.LENGTH_LONG).show();
     	}
     	else {
@@ -227,4 +238,52 @@ public class Diceware extends Activity {
     	}
     	roll = "";
     }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.faq:
+        	showDialog(0);
+            return true;
+        case R.id.about:
+        	showDialog(1);
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    protected Dialog onCreateDialog(int id) {
+    	AlertDialog alert = null;
+        switch(id) {
+        case 0:
+        	String url = getString(R.string.faq_url);        	
+        	Intent i = new Intent(Intent.ACTION_VIEW);
+        	i.setData(Uri.parse(url));
+        	startActivity(i);
+            break;
+        case 1:
+        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        	builder.setMessage(getString(R.string.about))
+        	       .setCancelable(false)
+        	       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        	           public void onClick(DialogInterface dialog, int id) {
+        	        	   dialog.cancel();
+        	           }
+        	       });
+        	alert = builder.create();
+        	return alert;
+		default:
+            alert = null;
+        }
+        return alert;
+    }
+    
 }
