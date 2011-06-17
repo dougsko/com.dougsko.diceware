@@ -178,7 +178,9 @@ public class Diceware extends Activity {
 			break;
 		case 3:
 			if ( roll.substring(0) == "6"){
-				Toast.makeText(Diceware.this, getString(R.string.roll_again), Toast.LENGTH_LONG).show();
+				Toast.makeText(Diceware.this, 
+						getString(R.string.roll_again), 
+						Toast.LENGTH_LONG).show();
 				roll = "";
 				break;
 			}
@@ -231,7 +233,9 @@ public class Diceware extends Activity {
     	String output = dicewareCursor.getString(
     			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR));
     	if(output.length() > 2) {
-    		Toast.makeText(Diceware.this, "Please roll again", Toast.LENGTH_LONG).show();
+    		Toast.makeText(Diceware.this,
+    				getString(R.string.please_roll_again), 
+    				Toast.LENGTH_LONG).show();
     	}
     	else {
     		mOutputText.setText(output);
