@@ -277,7 +277,7 @@ public class Diceware extends Activity {
         	AlertDialog.Builder builder = new AlertDialog.Builder(this);
         	builder.setMessage(getString(R.string.about))
         	       .setCancelable(false)
-        	       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        	       .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
         	           public void onClick(DialogInterface dialog, int id) {
         	        	   dialog.cancel();
         	           }

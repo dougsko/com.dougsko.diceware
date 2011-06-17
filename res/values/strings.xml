@@ -16,6 +16,7 @@
         <item>Alphanumeric</item>
         <item>Numbers</item>
     </string-array>
+    <string name="ok">OK</string>
     <string name="randomOrg">Random.org</string>
     <string name="roll_again">Roll again</string>
     <string name="please_roll_again">Please Roll again</string>
