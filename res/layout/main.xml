@@ -23,9 +23,11 @@
     	android:id="@+id/output"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
+        android:textSize="14sp"
         android:gravity="center"
         android:text=" "
+        android:editable="false"
+        android:scrollHorizontally="true"
         android:layout_marginBottom="20sp"
         android:layout_marginTop="10sp"
         android:layout_below="@id/output_label" />
@@ -93,4 +95,27 @@
         android:text="@string/randomOrg" 
         android:layout_centerHorizontal="true" 
         android:layout_centerVertical="true" />
+    <TableLayout 
+    	android:id="@+id/row2"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+        android:layout_below="@id/randomOrg"
+        android:layout_marginTop="20sp"
+        android:layout_weight="1">
+       	<TableRow
+        	android:layout_weight="1">        
+    		<Button
+    			android:id="@+id/copy_to_clipboard"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/copy_to_clipboard" />
+    		<Button
+    			android:id="@+id/clear"
+        		android:layout_width="0dip"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1"
+        		android:text="@string/clear" />
+        	</TableRow>
+		</TableLayout>              
 </RelativeLayout>

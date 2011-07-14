@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.ClipboardManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +45,10 @@ public class Diceware extends Activity {
         Button button_five = (Button) findViewById(R.id.five);
         Button button_six = (Button) findViewById(R.id.six);
         Button randomOrg = (Button) findViewById(R.id.randomOrg);
+        Button copy_to_clipboard = (Button) findViewById(R.id.copy_to_clipboard);
+        Button clear = (Button) findViewById(R.id.clear);
+        
+        final ClipboardManager clipBoard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
         
         mDbHelper = new DicewareDbAdapter(this);
         mDbHelper.open();
@@ -121,6 +126,24 @@ public class Diceware extends Activity {
             	}
             }            
         });
+        
+        // callback for clipboard button
+        // read this: http://developer.android.com/guide/topics/clipboard/copy-paste.html
+        copy_to_clipboard.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View view) {
+        		//String phrase = (String) mOutputText.getText();
+        		//phrase.trim();
+        		//mOutputText.setText(phrase.trim());
+        		clipBoard.setText("shit");
+        	}
+        });
+        
+        // callback for clear button
+        clear.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View view) {
+        		mOutputText.setText("");
+        	}
+        });
     
 	}
 		
@@ -195,11 +218,11 @@ public class Diceware extends Activity {
 				if(second_digit_int % 2 == 0){
 					int output_int = first_digit_int + 5;
 					String output_string = Integer.toString(output_int);
-					mOutputText.setText(output_string.substring(output_string.length() - 1));
+					mOutputText.append(output_string.substring(output_string.length() - 1) + " ");
 					roll = "";
 				}
 				else{
-					mOutputText.setText(first_digit_string);
+					mOutputText.append(first_digit_string + " ");
 					roll = "";
 				}
 			}
@@ -211,8 +234,8 @@ public class Diceware extends Activity {
     	Cursor dicewareCursor = mDbHelper.fetchWord(roll);
         startManagingCursor(dicewareCursor);
         
-        mOutputText.setText(dicewareCursor.getString(
-        		dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_WORD)));
+        mOutputText.append(dicewareCursor.getString(
+        		dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_WORD)) + " ");
         
         roll = "";
     }
@@ -221,8 +244,8 @@ public class Diceware extends Activity {
     	Cursor dicewareCursor = mDbHelper.fetchAlphaNumeric(roll);
     	startManagingCursor(dicewareCursor);
     	
-    	mOutputText.setText(dicewareCursor.getString(
-    			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR)));
+    	mOutputText.append(dicewareCursor.getString(
+    			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR)) + " ");
     	roll = "";
     }
     
@@ -238,7 +261,7 @@ public class Diceware extends Activity {
     				Toast.LENGTH_LONG).show();
     	}
     	else {
-    		mOutputText.setText(output);
+    		mOutputText.append(output + " ");
     	}
     	roll = "";
     }
