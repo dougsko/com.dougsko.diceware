@@ -172,7 +172,6 @@ public class Diceware extends Activity {
 	    			Toast.LENGTH_LONG).show();
 	      mode = pos;
 	      roll = "";
-	      mOutputText.setText("");
 	    }
 
 	    public void onNothingSelected(AdapterView<?> parent) {
