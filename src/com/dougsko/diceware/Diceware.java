@@ -131,10 +131,9 @@ public class Diceware extends Activity {
         // read this: http://developer.android.com/guide/topics/clipboard/copy-paste.html
         copy_to_clipboard.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
-        		//String phrase = (String) mOutputText.getText();
-        		//phrase.trim();
-        		//mOutputText.setText(phrase.trim());
-        		clipBoard.setText("shit");
+        		CharSequence phrase = (CharSequence) mOutputText.getText();
+        		phrase = phrase.subSequence(0, phrase.length()-1);
+        		clipBoard.setText(phrase);
         	}
         });
         
