@@ -20,8 +20,10 @@ public class randomOrgHelper {
     	HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = null;
         
+        HttpGet request = new HttpGet(url);
+        request.setHeader("User-Agent", "Android Diceware Application / dougtko@gmail.com");
 		try {
-			response = httpclient.execute(new HttpGet(url));
+			response = httpclient.execute(request);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
