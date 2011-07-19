@@ -133,7 +133,7 @@ public class Diceware extends Activity {
         	public void onClick(View view) {
         		CharSequence phrase = (CharSequence) mOutputText.getText();
         		if (phrase.length() > 0) {
-        			phrase = phrase.subSequence(0, phrase.length()-1);
+        			phrase = phrase.subSequence(1, phrase.length()-1);
         			clipBoard.setText(phrase);
         		}
         	}
@@ -313,4 +313,9 @@ public class Diceware extends Activity {
         return alert;
     }
     
+    @Override
+    public void onDestroy(){
+    	super.onDestroy();
+    	mDbHelper.close();
+    } 
 }
