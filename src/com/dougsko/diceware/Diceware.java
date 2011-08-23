@@ -132,7 +132,7 @@ public class Diceware extends Activity {
         copy_to_clipboard.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
         		CharSequence phrase = (CharSequence) mOutputText.getText();
-        		if (phrase.length() > 0) {
+        		if (phrase.length() > 1) {
         			phrase = phrase.subSequence(1, phrase.length()-1);
         			clipBoard.setText(phrase);
         		}
