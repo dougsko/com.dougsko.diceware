@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Diceware!</string>
+    <string name="app_name">Diceware</string>
+    <string name="output_label">Wyjście:</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="mode_prompt">Wybierz tryb</string>
+    <string-array name="modes_array">
+        <item>Słowa</item>
+        <item>ASCII</item>
+        <item>Alfanumeryczny</item>
+        <item>Liczby</item>
+    </string-array>
+    <string name="ok">OK</string>
+    <string name="randomOrg">Random.org</string>
+    <string name="copy_to_clipboard">Kopiuj do schowka</string>
+    <string name="clear">Jasny</string>
+    <string name="roll_again">Zacznij od nowa</string>
+    <string name="please_roll_again">Proszę zacznij od nowa</string>
+    <string name="times_to_roll">Rolka %1$s razy</string>
+    <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
+    <string name="about">Diceware jest bezpieczny sposób generowania haseł opracowanych przez Arnold G. Reinhold. Ta aplikacja pomocnika został napisany i jest utrzymywany przez Doug Prostko.</string>
+    <string name="about_label">O</string>
+    <string name="faq_label">FAQ</string>
+    
+        			
+</resources>

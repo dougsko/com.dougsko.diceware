@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Diceware!</string>
+    <string name="app_name">Diceware</string>
+    <string name="output_label">Salida:</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="mode_prompt">Seleccionar un modo de</string>
+    <string-array name="modes_array">
+        <item>Palabras</item>
+        <item>ASCII</item>
+        <item>Alfanumérico</item>
+        <item>Números</item>
+    </string-array>
+    <string name="ok">OK</string>
+    <string name="randomOrg">Random.org</string>
+    <string name="copy_to_clipboard">Copiar al portapapeles</string>
+    <string name="clear">Claro</string>
+    <string name="roll_again">Tira de nuevo</string>
+    <string name="please_roll_again">Por favor, vuelve a tirar</string>
+    <string name="times_to_roll">Rollo de %1$s veces</string>
+    <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
+    <string name="about">Diceware es un método de generación de contraseñas seguras desarrollado por
+                         Arnold G. Reinhold. Esta solicitud de ayuda fue escrita y es
+                         mantenida por Doug Prostko.</string>
+    <string name="about_label">Sobre</string>
+    <string name="faq_label">FAQ</string>       			
+</resources>

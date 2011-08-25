@@ -42,9 +42,11 @@ public final class R {
     }
     public static final class string {
         public static final int about=0x7f040012;
+        public static final int about_label=0x7f040013;
         public static final int app_name=0x7f040001;
         public static final int clear=0x7f04000d;
         public static final int copy_to_clipboard=0x7f04000c;
+        public static final int faq_label=0x7f040014;
         public static final int faq_url=0x7f040011;
         public static final int five=0x7f040007;
         public static final int four=0x7f040006;

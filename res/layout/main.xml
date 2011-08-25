@@ -11,14 +11,7 @@
         android:textSize="12sp"
         android:gravity="center"
         android:text="@string/output_label"/>
-    <!--     
-    <EditText
-        android:id="@+id/output"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
-        android:layout_below="@id/output_label"/>
-    -->
+  
     <TextView
     	android:id="@+id/output"
         android:layout_width="fill_parent"

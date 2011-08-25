@@ -88,6 +88,7 @@ public class DicewareDbAdapter {
         		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
         	}catch(SQLiteException e){
         		//database does't exist yet.
+        		e.printStackTrace();
         	}
         	if(checkDB != null){
         		checkDB.close();

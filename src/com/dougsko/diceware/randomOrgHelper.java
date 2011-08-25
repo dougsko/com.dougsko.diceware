@@ -25,10 +25,8 @@ public class randomOrgHelper {
 		try {
 			response = httpclient.execute(request);
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         StatusLine statusLine = response.getStatusLine();
@@ -37,13 +35,11 @@ public class randomOrgHelper {
             try {
 				response.getEntity().writeTo(out);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             try {
 				out.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -54,16 +50,13 @@ public class randomOrgHelper {
             try {
 				response.getEntity().getContent().close();
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             try {
 				throw new IOException(statusLine.getReasonPhrase());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }

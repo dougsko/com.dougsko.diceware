@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Diceware!</string>
+    <string name="app_name">Diceware</string>
+    <string name="output_label">출력:</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="mode_prompt">모드를 선택</string>
+    <string-array name="modes_array">
+        <item>말</item>
+        <item>ASCII</item>
+        <item>영숫자</item>
+        <item>민수기</item>
+    </string-array>
+    <string name="ok">OK</string>
+    <string name="randomOrg">Random.org</string>
+    <string name="copy_to_clipboard">클립 보드로 복사</string>
+    <string name="clear">맑은</string>
+    <string name="roll_again">다시 롤</string>
+    <string name="please_roll_again">다시 롤하세요</string>
+    <string name="times_to_roll">%1$s 번 롤</string>
+    <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
+    <string name="about">Diceware는 아놀드 G. 레인 홀드가 개발한 안전한 비밀 번호 생성 방법입니다. 이 도우미 응용 프로그램은 더그 Prostko에 의해 작성되었으며 유지됩니다.</string>
+    <string name="about_label">약</string>
+    <string name="faq_label">FAQ</string>
+    
+        			
+</resources>

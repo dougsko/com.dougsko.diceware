@@ -9,25 +9,24 @@
     <string name="four">4</string>
     <string name="five">5</string>
     <string name="six">6</string>
-    <string name="mode_prompt">Choose a mode</string>
+    <string name="mode_prompt">Wählen Sie einen Modus</string>
     <string-array name="modes_array">
-        <item>Words</item>
+        <item>Wörter</item>
         <item>ASCII</item>
-        <item>Alphanumeric</item>
+        <item>Alphanumerisch</item>
         <item>Numbers</item>
     </string-array>
     <string name="ok">OK</string>
     <string name="randomOrg">Random.org</string>
-    <string name="copy_to_clipboard">Copy to clipboard</string>
-    <string name="clear">Clear</string>
-    <string name="roll_again">Roll again</string>
-    <string name="please_roll_again">Please roll again</string>
-    <string name="times_to_roll">Roll %1$s times</string>
+    <string name="copy_to_clipboard">In die Zwischenablage kopieren</string>
+    <string name="clear">Klar</string>
+    <string name="roll_again">Rollen wieder</string>
+    <string name="please_roll_again">Bitte rollen wieder</string>
+    <string name="times_to_roll">Roll %1$s mal</string>
     <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
-    <string name="about">Diceware is a secure password generation method developed by
-        			Arnold G. Reinhold.  This helper application was written and is 
-        			maintained by Doug Prostko.</string>
-    <string name="about_label">About</string>
+    <string name="about">Diceware ist ein sicheres Passwort Generation Methode von Arnold G. Reinhold 
+                         entwickelt. Dieses Hilfsprogramm wurde geschrieben und wird verwaltet von Doug Prostko.</string>
+    <string name="about_label">Über</string>
     <string name="faq_label">FAQ</string>
     
         			

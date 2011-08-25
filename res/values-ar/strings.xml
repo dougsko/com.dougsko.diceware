@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Diceware!</string>
+    <string name="app_name">Diceware</string>
+    <string name="output_label">الإخراج :</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="mode_prompt">اختيار النمط</string>
+    <string-array name="modes_array">
+        <item>كلام</item>
+        <item>ASCII</item>
+        <item>أبجدية</item>
+        <item>أرقام</item>
+    </string-array>
+    <string name="ok">موافق</string>
+    <string name="randomOrg">Random.org</string>
+    <string name="copy_to_clipboard">نسخ إلى الحافظة</string>
+    <string name="clear">واضح</string>
+    <string name="roll_again">لفة مرة أخرى</string>
+    <string name="please_roll_again">يرجى لفة مرة أخرى</string>
+    <string name="times_to_roll">Roll %1$s times</string>
+    <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
+    <string name="about">Diceware جيل كلمة مرور آمنة الطريقة التي وضعها أرنولد G. راينهولد. وقد كتب هذا التطبيق المساعد وصيانتها حسب Prostko دوغ.</string>
+    <string name="about_label">حول</string>
+    <string name="faq_label">أسئلة وأجوبة</string> 
+    
+        			
+</resources>
