@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.ClipboardManager;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -119,10 +120,19 @@ public class Diceware extends Activity {
         randomOrg.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             	String numbers = randomOrgHelper.getNumbers();
-            	for(int i = 0; i <= numbers.length(); i++){
-            		roll = numbers.substring(0,i);
-            		checkRoll();
-            		roll = "";
+            	if(numbers != null) {
+            		for(int i = 0; i <= numbers.length(); i++){
+            			roll = numbers.substring(0,i);
+            			checkRoll();
+            			roll = "";
+            		}
+            	}
+            	else {
+            		Toast toast = Toast.makeText(Diceware.this, 
+        	    			R.string.randomOrg_problem, 
+        	    			Toast.LENGTH_LONG);
+        	    	toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
+        	    	toast.show();
             	}
             }            
         });
@@ -169,9 +179,11 @@ public class Diceware extends Activity {
 	    		numberOfRolls = "2";
 	    		break;
 	    	}
-	    	Toast.makeText(parent.getContext(), 
+	    	Toast toast = Toast.makeText(parent.getContext(), 
 	    			String.format(getString(R.string.times_to_roll),numberOfRolls), 
-	    			Toast.LENGTH_LONG).show();
+	    			Toast.LENGTH_LONG);
+	    	toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
+	    	toast.show();
 	      mode = pos;
 	      roll = "";
 	    }
@@ -201,9 +213,11 @@ public class Diceware extends Activity {
 			break;
 		case 3:
 			if ( roll.substring(0) == "6"){
-				Toast.makeText(Diceware.this, 
+				Toast toast = Toast.makeText(Diceware.this, 
 						getString(R.string.roll_again), 
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
+		    	toast.show();
 				roll = "";
 				break;
 			}
@@ -256,9 +270,11 @@ public class Diceware extends Activity {
     	String output = dicewareCursor.getString(
     			dicewareCursor.getColumnIndexOrThrow(DicewareDbAdapter.KEY_CHAR));
     	if(output.length() > 2) {
-    		Toast.makeText(Diceware.this,
+    		Toast toast = Toast.makeText(Diceware.this,
     				getString(R.string.please_roll_again), 
-    				Toast.LENGTH_LONG).show();
+    				Toast.LENGTH_LONG);
+    		toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
+	    	toast.show();    		
     	}
     	else {
     		mOutputText.append(output + " ");

@@ -18,6 +18,7 @@
     </string-array>
     <string name="ok">OK</string>
     <string name="randomOrg">Random.org</string>
+    <string name="randomOrg_problem">問題は連絡random.orgがありました</string>
     <string name="copy_to_clipboard">クリップボードにコピーします。</string>
     <string name="clear">クリア</string>
     <string name="roll_again">巻き返し</string>

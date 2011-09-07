@@ -18,6 +18,7 @@
     </string-array>
     <string name="ok">OK</string>
     <string name="randomOrg">Random.org</string>
+    <string name="randomOrg_problem">Houve um problema contactar random.org</string>
     <string name="copy_to_clipboard">Copiar para o clipboard</string>
     <string name="clear">Claro</string>
     <string name="roll_again">Rolar novamente</string>

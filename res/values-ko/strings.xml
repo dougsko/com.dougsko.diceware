@@ -18,6 +18,7 @@
     </string-array>
     <string name="ok">OK</string>
     <string name="randomOrg">Random.org</string>
+    <string name="randomOrg_problem">문제가 접촉 random.org가 발생했습니다</string>
     <string name="copy_to_clipboard">클립 보드로 복사</string>
     <string name="clear">맑은</string>
     <string name="roll_again">다시 롤</string>

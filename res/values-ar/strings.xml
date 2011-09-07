@@ -18,6 +18,7 @@
     </string-array>
     <string name="ok">موافق</string>
     <string name="randomOrg">Random.org</string>
+    <string name="randomOrg_problem">كان هناك مشكلة الاتصال random.org</string>
     <string name="copy_to_clipboard">نسخ إلى الحافظة</string>
     <string name="clear">واضح</string>
     <string name="roll_again">لفة مرة أخرى</string>
