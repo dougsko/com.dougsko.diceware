@@ -2,6 +2,7 @@ package com.dougsko.diceware;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -10,6 +11,12 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.HttpURLConnection;
+import javax.net.ssl.*;
 
 public class randomOrgHelper {
 	randomOrgHelper(){}
@@ -27,7 +34,7 @@ public class randomOrgHelper {
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			//e.printStackTrace();
+				e.printStackTrace();
 			return null;
 		}
         StatusLine statusLine = response.getStatusLine();
@@ -62,5 +69,34 @@ public class randomOrgHelper {
 			}
         }
 		return responseString;
+	}
+	
+	public static String getNumbersSSL() {
+		String responseString = null;
+		HttpsURLConnection urlConnection = null;
+		URL url = null;
+
+		try {
+			url = new URL("http://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain&rnd=new");
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			urlConnection = (HttpsURLConnection) url.openConnection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//urlConnection.setSSLSocketFactory(context.getSocketFactory());
+		try {
+			InputStream in = urlConnection.getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return responseString;
+		
 	}
 }
