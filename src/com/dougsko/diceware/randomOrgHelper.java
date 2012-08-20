@@ -2,8 +2,6 @@ package com.dougsko.diceware;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -12,16 +10,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.HttpURLConnection;
-import javax.net.ssl.*;
+import android.content.Context;
 
 public class randomOrgHelper {
-	randomOrgHelper(){}
+	randomOrgHelper(Context context){
+	}
 
-	public static String getNumbers(){
+	public String getNumbers(){
 		String url = "http://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain&rnd=new";
 		String responseString = null;
     	HttpClient httpclient = new DefaultHttpClient();
@@ -71,10 +66,34 @@ public class randomOrgHelper {
 		return responseString;
 	}
 	
+	/*
 	public static String getNumbersSSL() {
+		KeyStore keyStore = Diceware.keyStore();
+		KeyManagerFactory kmf = null;
+		try {
+			kmf = KeyManagerFactory.getInstance("X509");
+		} catch (NoSuchAlgorithmException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		
 		String responseString = null;
 		HttpsURLConnection urlConnection = null;
 		URL url = null;
+		SSLContext context = null;
+		try {
+			context = SSLContext.getInstance("TLS");
+		} catch (NoSuchAlgorithmException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		try {
+			context.init(kmf.getKeyManagers(), null, null);
+		} catch (KeyManagementException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		try {
 			url = new URL("http://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain&rnd=new");
@@ -99,4 +118,5 @@ public class randomOrgHelper {
 		return responseString;
 		
 	}
+	*/
 }

@@ -28,6 +28,7 @@ public class Diceware extends Activity {
 
 	private TextView mOutputText;
 	private DicewareDbAdapter mDbHelper;
+	private randomOrgHelper mRandomOrgHelper;
 	private int mode; 
 	private String roll;
 	
@@ -53,6 +54,9 @@ public class Diceware extends Activity {
         
         mDbHelper = new DicewareDbAdapter(this);
         mDbHelper.open();
+        
+        mRandomOrgHelper = new randomOrgHelper(this);
+		
         
         // set up mode spinner
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -119,7 +123,7 @@ public class Diceware extends Activity {
          */
         randomOrg.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            	String numbers = randomOrgHelper.getNumbers();
+            	String numbers = mRandomOrgHelper.getNumbers(); //randomOrgHelper.getNumbers();
             	if(numbers != null) {
             		for(int i = 0; i <= numbers.length(); i++){
             			roll = numbers.substring(0,i);
