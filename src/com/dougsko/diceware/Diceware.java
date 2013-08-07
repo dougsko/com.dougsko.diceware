@@ -208,24 +208,36 @@ public class Diceware extends Activity {
 	private void checkRoll(){
 		switch (mode) {
 		case 0:
+			int rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
+			rollsSoFarInt += 1;
+			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
 			if( roll.length() == 5) {
 				getWord();
 				rollsSoFar.setText("0");
 			}
 			break;
 		case 1:
+			rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
+			rollsSoFarInt += 1;
+			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
 			if (roll.length() == 3) {
 				getAscii();
 				rollsSoFar.setText("0");
 			}
 			break;
 		case 2:
+			rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
+			rollsSoFarInt += 1;
+			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
 			if ( roll.length() == 2) {
 				getAlphaNumeric();
 				rollsSoFar.setText("0");
 			}
 			break;
 		case 3:
+			rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
+			rollsSoFarInt += 1;
+			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
 			if ( roll.substring(0) == "6"){
 				Toast toast = Toast.makeText(Diceware.this, 
 						getString(R.string.roll_again), 
@@ -258,9 +270,7 @@ public class Diceware extends Activity {
 			}
 			break;
 		}
-		int rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
-		rollsSoFarInt += 1;
-		rollsSoFar.setText(Integer.toString(rollsSoFarInt));
+		
 	}
 	
     private void getWord() {
