@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
     <string name="output_label">출력:</string>
     <string name="one">1</string>
@@ -28,6 +27,7 @@
     <string name="about">Diceware는 아놀드 G. 레인 홀드가 개발한 안전한 비밀 번호 생성 방법입니다. 이 도우미 응용 프로그램은 더그 Prostko에 의해 작성되었으며 유지됩니다.</string>
     <string name="about_label">약</string>
     <string name="faq_label">FAQ</string>
+    <string name="space"> </string>
     
         			
 </resources>

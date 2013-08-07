@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
     <string name="output_label">Output:</string>
     <string name="one">1</string>
@@ -29,6 +28,7 @@
                          entwickelt. Dieses Hilfsprogramm wurde geschrieben und wird verwaltet von Doug Prostko.</string>
     <string name="about_label">Über</string>
     <string name="faq_label">FAQ</string>
+    <string name="space"> </string>
     
         			
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
     <string name="output_label">الإخراج :</string>
     <string name="one">1</string>
@@ -27,7 +26,8 @@
     <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
     <string name="about">Diceware جيل كلمة مرور آمنة الطريقة التي وضعها أرنولد G. راينهولد. وقد كتب هذا التطبيق المساعد وصيانتها حسب Prostko دوغ.</string>
     <string name="about_label">حول</string>
-    <string name="faq_label">أسئلة وأجوبة</string> 
+    <string name="faq_label">أسئلة وأجوبة</string>
+    <string name="space"> </string> 
     
         			
 </resources>

@@ -17,7 +17,7 @@ public class randomOrgHelper {
 	}
 
 	public String getNumbers(){
-		String url = "http://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain&rnd=new";
+		String url = "https://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain&rnd=new";
 		String responseString = null;
     	HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = null;

@@ -9,7 +9,7 @@ package com.dougsko.diceware;
 
 public final class R {
     public static final class array {
-        public static final int modes_array=0x7f060000;
+        public static final int modes_array=0x7f050000;
     }
     public static final class attr {
     }
@@ -17,54 +17,61 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int about=0x7f08000f;
-        public static final int clear=0x7f08000d;
-        public static final int copy_to_clipboard=0x7f08000c;
-        public static final int faq=0x7f08000e;
-        public static final int five=0x7f080007;
-        public static final int four=0x7f080006;
-        public static final int one=0x7f080003;
-        public static final int output=0x7f080001;
-        public static final int output_label=0x7f080000;
-        public static final int randomOrg=0x7f08000a;
-        public static final int row1=0x7f080002;
-        public static final int row2=0x7f08000b;
-        public static final int six=0x7f080008;
-        public static final int spinner=0x7f080009;
-        public static final int three=0x7f080005;
-        public static final int two=0x7f080004;
+        public static final int about=0x7f070014;
+        public static final int clear=0x7f07000d;
+        public static final int copy_to_clipboard=0x7f07000c;
+        public static final int faq=0x7f070013;
+        public static final int five=0x7f070007;
+        public static final int four=0x7f070006;
+        public static final int help=0x7f070012;
+        public static final int one=0x7f070003;
+        public static final int output=0x7f070001;
+        public static final int output_label=0x7f070000;
+        public static final int randomOrg=0x7f07000a;
+        public static final int rollsSoFar=0x7f07000f;
+        public static final int row1=0x7f070002;
+        public static final int row2=0x7f07000b;
+        public static final int six=0x7f070008;
+        public static final int slash=0x7f070010;
+        public static final int spinner=0x7f070009;
+        public static final int textView1=0x7f07000e;
+        public static final int three=0x7f070005;
+        public static final int totalRolls=0x7f070011;
+        public static final int two=0x7f070004;
     }
     public static final class layout {
         public static final int main=0x7f030000;
     }
     public static final class menu {
-        public static final int options=0x7f070000;
-    }
-    public static final class raw {
-        public static final int diceware=0x7f040000;
+        public static final int options=0x7f060000;
     }
     public static final class string {
-        public static final int about=0x7f050013;
-        public static final int about_label=0x7f050014;
-        public static final int app_name=0x7f050001;
-        public static final int clear=0x7f05000e;
-        public static final int copy_to_clipboard=0x7f05000d;
-        public static final int faq_label=0x7f050015;
-        public static final int faq_url=0x7f050012;
-        public static final int five=0x7f050007;
-        public static final int four=0x7f050006;
-        public static final int hello=0x7f050000;
-        public static final int mode_prompt=0x7f050009;
-        public static final int ok=0x7f05000a;
-        public static final int one=0x7f050003;
-        public static final int output_label=0x7f050002;
-        public static final int please_roll_again=0x7f050010;
-        public static final int randomOrg=0x7f05000b;
-        public static final int randomOrg_problem=0x7f05000c;
-        public static final int roll_again=0x7f05000f;
-        public static final int six=0x7f050008;
-        public static final int three=0x7f050005;
-        public static final int times_to_roll=0x7f050011;
-        public static final int two=0x7f050004;
+        public static final int about=0x7f040013;
+        public static final int about_label=0x7f040014;
+        public static final int app_name=0x7f040000;
+        public static final int clear=0x7f04000e;
+        public static final int copy_to_clipboard=0x7f04000d;
+        public static final int faq_label=0x7f040015;
+        public static final int faq_url=0x7f040012;
+        public static final int five=0x7f040007;
+        public static final int four=0x7f040006;
+        public static final int help=0x7f040018;
+        public static final int help_label=0x7f040017;
+        public static final int mode_prompt=0x7f040009;
+        public static final int ok=0x7f04000a;
+        public static final int one=0x7f040003;
+        public static final int output_label=0x7f040001;
+        public static final int please_roll_again=0x7f040010;
+        public static final int randomOrg=0x7f04000b;
+        public static final int randomOrg_problem=0x7f04000c;
+        public static final int roll_again=0x7f04000f;
+        public static final int rolls=0x7f040019;
+        public static final int six=0x7f040008;
+        public static final int slash=0x7f04001a;
+        public static final int space=0x7f040016;
+        public static final int three=0x7f040005;
+        public static final int times_to_roll=0x7f040011;
+        public static final int two=0x7f040004;
+        public static final int zero=0x7f040002;
     }
 }

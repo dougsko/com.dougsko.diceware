@@ -4,12 +4,14 @@ package com.dougsko.diceware;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+//import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.ClipboardManager;
+//import android.content.ClipboardManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +33,8 @@ public class Diceware extends Activity {
 	private randomOrgHelper mRandomOrgHelper;
 	private int mode; 
 	private String roll;
+	private TextView rollsSoFar;
+	private TextView totalRolls;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class Diceware extends Activity {
         Button randomOrg = (Button) findViewById(R.id.randomOrg);
         Button copy_to_clipboard = (Button) findViewById(R.id.copy_to_clipboard);
         Button clear = (Button) findViewById(R.id.clear);
+        rollsSoFar = (TextView) findViewById(R.id.rollsSoFar);
+        totalRolls = (TextView) findViewById(R.id.totalRolls);
         
         final ClipboardManager clipBoard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
         
@@ -142,13 +148,13 @@ public class Diceware extends Activity {
         });
         
         // callback for clipboard button
-        // read this: http://developer.android.com/guide/topics/clipboard/copy-paste.html
         copy_to_clipboard.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
-        		CharSequence phrase = (CharSequence) mOutputText.getText();
-        		if (phrase.length() > 1) {
-        			phrase = phrase.subSequence(1, phrase.length()-1);
-        			clipBoard.setText(phrase);
+        		CharSequence textPhrase = (CharSequence) mOutputText.getText();
+        		if (textPhrase.length() > 1) {
+        			textPhrase = textPhrase.subSequence(0, textPhrase.length()-1);
+        			clipBoard.setText(textPhrase);
+        			//clipBoard.setPrimaryClip(ClipData.newPlainText("pass", textPhrase));
         		}
         	}
         });
@@ -190,6 +196,7 @@ public class Diceware extends Activity {
 	    	toast.show();
 	      mode = pos;
 	      roll = "";
+	      totalRolls.setText(numberOfRolls);
 	    }
 
 	    public void onNothingSelected(AdapterView<?> parent) {
@@ -203,16 +210,19 @@ public class Diceware extends Activity {
 		case 0:
 			if( roll.length() == 5) {
 				getWord();
+				rollsSoFar.setText("0");
 			}
 			break;
 		case 1:
 			if (roll.length() == 3) {
 				getAscii();
+				rollsSoFar.setText("0");
 			}
 			break;
 		case 2:
 			if ( roll.length() == 2) {
 				getAlphaNumeric();
+				rollsSoFar.setText("0");
 			}
 			break;
 		case 3:
@@ -223,6 +233,7 @@ public class Diceware extends Activity {
 				toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
 		    	toast.show();
 				roll = "";
+				rollsSoFar.setText("0");
 				break;
 			}
 			if(roll.length() == 2){
@@ -243,9 +254,13 @@ public class Diceware extends Activity {
 					mOutputText.append(first_digit_string + " ");
 					roll = "";
 				}
+				rollsSoFar.setText("0");
 			}
 			break;
 		}
+		int rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
+		rollsSoFarInt += 1;
+		rollsSoFar.setText(Integer.toString(rollsSoFarInt));
 	}
 	
     private void getWord() {
@@ -302,6 +317,10 @@ public class Diceware extends Activity {
             return true;
         case R.id.about:
         	showDialog(1);
+        	return true;
+        case R.id.help:
+        	showDialog(2);
+        	return true;
         default:
             return super.onOptionsItemSelected(item);
         }
@@ -326,6 +345,17 @@ public class Diceware extends Activity {
         	           }
         	       });
         	alert = builder.create();
+        	return alert;
+        case 2:
+        	AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        	builder1.setMessage(getString(R.string.help))
+        	       .setCancelable(false)
+        	       .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+        	           public void onClick(DialogInterface dialog, int id) {
+        	        	   dialog.cancel();
+        	           }
+        	       });
+        	alert = builder1.create();
         	return alert;
 		default:
             alert = null;

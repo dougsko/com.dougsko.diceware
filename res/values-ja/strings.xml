@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
     <string name="output_label">出力:</string>
     <string name="one">1</string>
@@ -27,5 +26,6 @@
     <string name="faq_url">http://world.std.com/~reinhold/dicewarefaq.html</string>
     <string name="about">ダイスはアーノルドG. Reinhold氏が開発した安全なパスワードの生成方法です。このヘルパーアプリケーションは、ダグProstkoによって書かれ、維持されます。</string>
     <string name="about_label">について</string>
-    <string name="faq_label">よくある質問</string>       			
+    <string name="faq_label">よくある質問</string>
+    <string name="space"> </string>    			
 </resources>

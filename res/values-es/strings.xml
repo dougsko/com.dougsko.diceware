@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Diceware!</string>
     <string name="app_name">Diceware</string>
     <string name="output_label">Salida:</string>
     <string name="one">1</string>
@@ -29,5 +28,6 @@
                          Arnold G. Reinhold. Esta solicitud de ayuda fue escrita y es
                          mantenida por Doug Prostko.</string>
     <string name="about_label">Sobre</string>
-    <string name="faq_label">FAQ</string>       			
+    <string name="faq_label">FAQ</string>
+    <string name="space"> </string>   			
 </resources>
