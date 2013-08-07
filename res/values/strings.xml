@@ -36,7 +36,7 @@
         you will be prompted to roll between two and five times.  Roll that many dice and enter the values 
         by pressing the numbered buttons near the top of the interface.  If you do not have dice, just press the Random.org 
         button to securely retrieve random numbers.</string>
-    <string name="rolls">Rolls: </string>
+    <string name="rolls">Rolls:\u0020</string>
     <string name="slash">/</string>
     
         			

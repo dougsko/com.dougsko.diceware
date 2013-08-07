@@ -203,41 +203,45 @@ public class Diceware extends Activity {
 	      // Do nothing.
 	    }
 	}
+	
+	// increment roll count
+	private void incrementRollCount(){
+		int rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
+		rollsSoFarInt += 1;
+		rollsSoFar.setText(Integer.toString(rollsSoFarInt));
+	}
+	
+	// reset roll count
+	private void resetRollCount(){
+		rollsSoFar.setText("0");
+	}
     
 	// the modes equate to the index of the modes_array in strings.xml
 	private void checkRoll(){
 		switch (mode) {
 		case 0:
-			int rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
-			rollsSoFarInt += 1;
-			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
+			incrementRollCount();
 			if( roll.length() == 5) {
 				getWord();
-				rollsSoFar.setText("0");
+				resetRollCount();
 			}
 			break;
 		case 1:
-			rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
-			rollsSoFarInt += 1;
-			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
+			incrementRollCount();
 			if (roll.length() == 3) {
 				getAscii();
-				rollsSoFar.setText("0");
+				resetRollCount();
 			}
 			break;
 		case 2:
-			rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
-			rollsSoFarInt += 1;
-			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
+			incrementRollCount();
 			if ( roll.length() == 2) {
 				getAlphaNumeric();
-				rollsSoFar.setText("0");
+				resetRollCount();
 			}
 			break;
 		case 3:
-			rollsSoFarInt = Integer.parseInt((String) rollsSoFar.getText());
-			rollsSoFarInt += 1;
-			rollsSoFar.setText(Integer.toString(rollsSoFarInt));
+			incrementRollCount();
 			if ( roll.substring(0) == "6"){
 				Toast toast = Toast.makeText(Diceware.this, 
 						getString(R.string.roll_again), 
@@ -245,7 +249,7 @@ public class Diceware extends Activity {
 				toast.setGravity(Gravity.BOTTOM|Gravity.CENTER, 0, 0);
 		    	toast.show();
 				roll = "";
-				rollsSoFar.setText("0");
+				resetRollCount();
 				break;
 			}
 			if(roll.length() == 2){
@@ -266,7 +270,7 @@ public class Diceware extends Activity {
 					mOutputText.append(first_digit_string + " ");
 					roll = "";
 				}
-				rollsSoFar.setText("0");
+				resetRollCount();
 			}
 			break;
 		}
