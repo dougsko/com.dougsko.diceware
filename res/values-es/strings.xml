@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Diceware</string>
     <string name="output_label">Salida:</string>
+    <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -29,5 +30,9 @@
                          mantenida por Doug Prostko.</string>
     <string name="about_label">Sobre</string>
     <string name="faq_label">FAQ</string>
-    <string name="space"> </string>   			
+    <string name="space">\u0020</string>
+    <string name="help_label">Ayudar</string>
+    <string name="help">Dependiendo de si usted elige las palabras de salida, alfanuméricos, caracteres ASCII, o números, se le pedirá a rodar entre dos y cinco veces. Roll que tantos dados e introduzca los valores pulsando los botones numerados en la parte superior de la interfaz. Si usted no tiene dados, sólo tiene que pulsar el botón Random.org para recuperar con seguridad los números aleatorios.</string>
+    <string name="rolls">Rolls:\u0020</string>
+    <string name="slash">/</string>   			
 </resources>

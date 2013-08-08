@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Diceware</string>
     <string name="output_label">Wyjście:</string>
+    <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -27,7 +28,11 @@
     <string name="about">Diceware jest bezpieczny sposób generowania haseł opracowanych przez Arnold G. Reinhold. Ta aplikacja pomocnika został napisany i jest utrzymywany przez Doug Prostko.</string>
     <string name="about_label">O</string>
     <string name="faq_label">FAQ</string>
-    <string name="space"> </string>
+    <string name="space">\u0020</string>
+    <string name="help_label">Pomoc</string>
+    <string name="help">W zależności od tego, czy zdecydujesz się na słowa wyjściowe, znaki alfanumeryczne, znaki ASCII lub liczby, zostaniesz poproszony, aby rzucić od dwóch do pięciu razy. Rzuć że wiele kości i wprowadź wartości, naciskając przyciski numeryczne, w pobliżu górnej części interfejsu. Jeśli nie masz kości, po prostu naciśnij przycisk Random.org bezpiecznie pobierać liczb losowych.</string>
+    <string name="rolls">Rolls:\u0020</string>
+    <string name="slash">/</string>
     
         			
 </resources>

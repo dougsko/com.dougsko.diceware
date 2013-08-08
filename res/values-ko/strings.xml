@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Diceware</string>
     <string name="output_label">출력:</string>
+    <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -27,7 +28,11 @@
     <string name="about">Diceware는 아놀드 G. 레인 홀드가 개발한 안전한 비밀 번호 생성 방법입니다. 이 도우미 응용 프로그램은 더그 Prostko에 의해 작성되었으며 유지됩니다.</string>
     <string name="about_label">약</string>
     <string name="faq_label">FAQ</string>
-    <string name="space"> </string>
+    <string name="space">\u0020</string>
+    <string name="help_label">도움</string>
+    <string name="help">당신은 출력 단어, 영숫자, ASCII 문자 또는 숫자로 선택 여부에 따라 두 다섯 시간 사이 롤하라는 메시지가 표시됩니다. 많은 주사위를 굴려 인터페이스의 상단에있는 숫자 버튼을 눌러 값을 입력합니다. 당신이 주사위를 가지고 있지 않은 경우에, 다만 안전하게 난수를 검색 할 수 Random.org 버튼을 누릅니다.</string>
+    <string name="rolls">롤:\u0020</string>
+    <string name="slash">/</string>
     
         			
 </resources>

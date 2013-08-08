@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Diceware</string>
     <string name="output_label">Saída:</string>
+    <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -27,5 +28,9 @@
     <string name="about">Diceware é um método de geração de senha segura desenvolvido por Arnold G. Reinhold. Este aplicativo auxiliar foi escrito e é mantido por Doug Prostko.</string>
     <string name="about_label">Sobre</string>
     <string name="faq_label">FAQ</string>
-    <string name="space"> </string>       			
+    <string name="space">\u0020</string>
+    <string name="help_label">Ajudar</string>
+    <string name="help">Dependendo se você optar por palavras de saída, Alfanuméricos, caracteres ASCII, ou números, você será solicitado a rolar entre duas e cinco vezes. Rolo que muitos dados e inserir os valores pressionando os botões numerados perto do topo da interface. Se você não tem dados, basta pressionar o botão Random.org para recuperar de forma segura números aleatórios.</string>
+    <string name="rolls">Rolos:\u0020</string>
+    <string name="slash">/</string>       			
 </resources>

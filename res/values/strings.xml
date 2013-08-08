@@ -30,12 +30,9 @@
         			maintained by Doug Prostko.</string>
     <string name="about_label">About</string>
     <string name="faq_label">FAQ</string>
-    <string name="space"> </string>
+    <string name="space">\u0020</string>
     <string name="help_label">Help</string>
-    <string name="help">Depending on whether you choose to output Words, Alphanumerics, ASCII characters, or Numbers,
-        you will be prompted to roll between two and five times.  Roll that many dice and enter the values 
-        by pressing the numbered buttons near the top of the interface.  If you do not have dice, just press the Random.org 
-        button to securely retrieve random numbers.</string>
+    <string name="help">Depending on whether you choose to output Words, Alphanumerics, ASCII characters, or Numbers, you will be prompted to roll between two and five times.  Roll that many dice and enter the values by pressing the numbered buttons near the top of the interface.  If you do not have dice, just press the Random.org button to securely retrieve random numbers.</string>
     <string name="rolls">Rolls:\u0020</string>
     <string name="slash">/</string>
     

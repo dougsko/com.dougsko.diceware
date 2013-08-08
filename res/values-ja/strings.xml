@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Diceware</string>
     <string name="output_label">出力:</string>
+    <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -27,5 +28,9 @@
     <string name="about">ダイスはアーノルドG. Reinhold氏が開発した安全なパスワードの生成方法です。このヘルパーアプリケーションは、ダグProstkoによって書かれ、維持されます。</string>
     <string name="about_label">について</string>
     <string name="faq_label">よくある質問</string>
-    <string name="space"> </string>    			
+    <string name="space">\u0020</string>
+    <string name="help_label">役立つ</string>
+    <string name="help">あなたは出力ワード、英数字、ASCII文字、または数字を選択するかどうかに応じて、あなたが2〜5倍の間でロールするように求められます。その多くのサイコロを転がして、インターフェイスの上部付近の番号のボタンを押して値を入力します。あなたはサイコロを持っていない場合は、単に安全に乱数を取得するRandom.orgボタンを押します。</string>
+    <string name="rolls">ロールスロイス：\u0020</string>
+    <string name="slash">/</string>    			
 </resources>

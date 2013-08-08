@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Diceware</string>
     <string name="output_label">الإخراج :</string>
+    <string name="zero">0</string>
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
@@ -27,7 +28,11 @@
     <string name="about">Diceware جيل كلمة مرور آمنة الطريقة التي وضعها أرنولد G. راينهولد. وقد كتب هذا التطبيق المساعد وصيانتها حسب Prostko دوغ.</string>
     <string name="about_label">حول</string>
     <string name="faq_label">أسئلة وأجوبة</string>
-    <string name="space"> </string> 
+    <string name="space">\u0020</string>
+    <string name="help_label">النجدة</string>  
+    <string name="help">اعتمادا على ما إذا اخترت كلمات الإخراج، هجائيات عددية، أحرف ASCII أو أرقام، سيتم مطالبتك للفة بين سنتين وخمس مرات. لفة النرد وأن العديد من إدخال القيم عن طريق الضغط على أزرار مرقمة بالقرب من أعلى الواجهة. إذا لم يكن لديك النرد، مجرد الضغط على زر Random.org لاسترداد آمن أرقام عشوائية.</string>
+    <string name="rolls">فات:\u0020</string>
+    <string name="slash">/</string>
     
         			
 </resources>
