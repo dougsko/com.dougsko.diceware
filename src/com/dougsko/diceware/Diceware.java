@@ -163,6 +163,7 @@ public class Diceware extends Activity {
         clear.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View view) {
         		mOutputText.setText("");
+        		resetRollCount();
         	}
         });
     
