@@ -1,6 +1,8 @@
 package com.dougsko.diceware;
 
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -8,6 +10,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.ClipboardManager;
@@ -58,7 +61,7 @@ public class Diceware extends Activity {
         
         final ClipboardManager clipBoard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
         
-        mDbHelper = new DicewareDbAdapter(this);
+        mDbHelper = new DicewareDbAdapter(this);       
         mDbHelper.open();
         
         mRandomOrgHelper = new randomOrgHelper(this);
