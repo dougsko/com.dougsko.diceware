@@ -1,6 +1,6 @@
 angular.module('diceware.controllers', [])
 
-.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading) {
+.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading, $cordovaSQLite) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
     $scope.totalRolls = 5;
@@ -26,6 +26,16 @@ angular.module('diceware.controllers', [])
     }
 
     checkRoll = function() {
+        var db = window.sqlitePlugin.openDatabase({name: "diceware.db"});
+        $ionicLoading.show({ template: db.class, noBackdrop: true, duration: 2000 });
+        /*
+        db.transaction(function(tx) {
+                    tx.executeSql("select count(id) from Words;", [], function(tx, res) {
+                        $ionicLoading.show({ template: res.rows.length, noBackdrop: true, duration: 2000 });
+                    });
+        }
+        */
+
         incrementRoll();
         switch ($scope.mode) {
             case 0:
@@ -146,5 +156,4 @@ angular.module('diceware.controllers', [])
         $scope.output = "";
         $scope.roll = 0;
     }
-
 })
