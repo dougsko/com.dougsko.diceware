@@ -1,0 +1,62 @@
+<ion-view view-title="Diceware">
+<!--
+<ion-header-bar class="bar-stable bar-dark">
+    <h1 class="title">Diceware</h1>
+</ion-header-bar>
+-->
+<ion-content padding="false">
+
+<h5 class="outputTitle"><center>Output:</center></h5>
+
+<div class="padding">
+    <div class="output"><center>{{output}}&nbsp;</center></div>
+</div>
+
+<div class="padding">
+    <span class="badge badge-stable">Rolls: {{numRolls}} / {{totalRolls}}</span>
+</div>
+
+<div class="padding">
+    <div class="button-bar">
+        <a class="button" ng-click="numberPress(1)">1</a>
+        <a class="button" ng-click="numberPress(2)">2</a>
+        <a class="button" ng-click="numberPress(3)">3</a>
+        <a class="button" ng-click="numberPress(4)">4</a>
+        <a class="button" ng-click="numberPress(5)">5</a>
+        <a class="button" ng-click="numberPress(6)">6</a>
+    </div>
+</div>
+
+<div class="padding">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            Output Type
+        </div>
+        <select ng-init="selectedOutputType = outputTypes[0]" 
+                ng-model="selectedOutputType" 
+                ng-options="outputType for outputType in outputTypes" 
+                ng-change="updateType(selectedOutputType)">
+        </select>
+    </label>
+</div>
+
+
+
+<div class="padding">
+    <a class="button button-block" ng-click="randomOrg()">Random.org</a>
+</div>
+
+<div class="padding">
+    <div class="row">
+        <div class="col">
+            <a class="button button-block" ng-click="copyToClipboard()">Copy to clipboard</a> 
+        </div>
+        <div class="col">
+            <a class="button button-block" ng-click="clearOutput()">Clear</a>
+        </div>
+    </div>
+</div>
+
+
+</ion-content> 
+</ion-view> 

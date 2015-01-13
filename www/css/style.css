@@ -1,0 +1,11 @@
+/* Empty. Add your own CSS if you like */
+
+.outputTitle {
+    color: grey;
+}
+
+.output {
+    background: lightgrey;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+}
