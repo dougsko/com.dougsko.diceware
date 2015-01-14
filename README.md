@@ -6,7 +6,7 @@ The full source code for this application can be found here:
 https://github.com/dougsko/com.dougsko.diceware
 
 
-Special thanks to Adam Englehart for creating the icon for this application!
+Special thanks to [Adam Englehart](http://adamenglehart.com) for creating the icon for this application!
 
 If you enjoy this software, please let me know!
 

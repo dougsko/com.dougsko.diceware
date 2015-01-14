@@ -26,8 +26,8 @@ angular.module('diceware.controllers', [])
     }
 
     checkRoll = function() {
-        var db = window.sqlitePlugin.openDatabase({name: "diceware.db"});
-        $ionicLoading.show({ template: db.class, noBackdrop: true, duration: 2000 });
+        //var db = window.sqlitePlugin.openDatabase({name: "diceware.db"});
+        //$ionicLoading.show({ template: db.class, noBackdrop: true, duration: 2000 });
         /*
         db.transaction(function(tx) {
                     tx.executeSql("select count(id) from Words;", [], function(tx, res) {
