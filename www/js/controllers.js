@@ -1,6 +1,6 @@
 angular.module('diceware.controllers', [])
 
-.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading, $cordovaSQLite) {
+.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
     $scope.totalRolls = 5;

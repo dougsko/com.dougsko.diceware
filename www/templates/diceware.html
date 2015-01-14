@@ -1,8 +1,8 @@
-<ion-view view-title="Diceware">
+<ion-view view-title="Diceware <i class='icon ion-ios7-lightbulb-outline'/>">
 <!--
-<ion-header-bar class="bar-stable bar-dark">
+    <ion-header-bar class="bar-stable bar-dark">
     <h1 class="title">Diceware</h1>
-</ion-header-bar>
+    </ion-header-bar>
 -->
 <ion-content padding="false">
 
@@ -46,14 +46,12 @@
     <a class="button button-block" ng-click="randomOrg()">Random.org</a>
 </div>
 
-<div class="padding">
-    <div class="row">
-        <div class="col">
-            <a class="button button-block" ng-click="copyToClipboard()">Copy to clipboard</a> 
-        </div>
-        <div class="col">
-            <a class="button button-block" ng-click="clearOutput()">Clear</a>
-        </div>
+<div class="row padding">
+    <div class="col">
+        <a class="button button-block" ng-click="copyToClipboard()">Copy</a> 
+    </div>
+    <div class="col">
+        <a class="button button-block" ng-click="clearOutput()">Clear</a>
     </div>
 </div>
 
