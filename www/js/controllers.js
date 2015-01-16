@@ -1,6 +1,6 @@
 angular.module('diceware.controllers', [])
 
-.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading) {
+.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading, $cordovaSQLite, database) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
     $scope.totalRolls = 5;
@@ -8,7 +8,6 @@ angular.module('diceware.controllers', [])
     $scope.roll = '';
     $scope.mode = 0;
     $scope.output = '';
-
 
     // when the user presses a number
     $scope.numberPress = function(number) {
@@ -26,65 +25,65 @@ angular.module('diceware.controllers', [])
     }
 
     checkRoll = function() {
-        //var db = window.sqlitePlugin.openDatabase({name: "diceware.db"});
-        //$ionicLoading.show({ template: db.class, noBackdrop: true, duration: 2000 });
-        /*
-        db.transaction(function(tx) {
-                    tx.executeSql("select count(id) from Words;", [], function(tx, res) {
-                        $ionicLoading.show({ template: res.rows.length, noBackdrop: true, duration: 2000 });
-                    });
-        }
-        */
-
         incrementRoll();
         switch ($scope.mode) {
             case 0:
                 if($scope.roll.length == 5) {
-                    $scope.output += diceware.words[$scope.roll] + ' ';
+                    database.getWord($scope.roll).then(function(res) { 
+                        $scope.output += res + ' '; 
+                    }, function(res) {
+                        console.err(res);
+                    });
                     resetRolls();
                 }
                 break;
             case 1:
                 if($scope.roll.length == 3) {
-                    if(diceware.ascii[$scope.roll] == 'null') {
-                        $ionicLoading.show({ template: 'Please roll again!', noBackdrop: true, duration: 2000 });
-                    }
-                    else {
-                        $scope.output += diceware.ascii[$scope.roll] + ' ';
-                    }
+                    database.getAscii($scope.roll).then(function(res) {
+                        if(res == 'null') {
+                            $ionicLoading.show({ template: 'Please roll again!', noBackdrop: true, duration: 1000 });
+                        }
+                        else {
+                            $scope.output += res + ' ';
+                        }
+                    }, function(res) {
+                        console.err(res);
+                    });
                     resetRolls();
                 }
                 break;
             case 2:
                 if($scope.roll.length == 2) {
-                    $scope.output += diceware.alphanumeric[$scope.roll] + ' ';
+                    database.getAlphaNumeric($scope.roll).then(function(res) { 
+                        $scope.output += res + ' '; 
+                    }, function(res) {
+                        console.err(res);
+                    });
                     resetRolls();
                 }
                 break;
             case 3:
-                if ( $scope.roll.substring(0) == "6") {
-                    $ionicLoading.show({ template: 'Please roll again!', noBackdrop: true, duration: 2000 });
-                    $scope.roll = ''; 
+                if ($scope.roll.substring(0) == "6") {
+                    $ionicLoading.show({ template: 'Please roll again!', noBackdrop: true, duration: 1000 });
                     resetRolls();
                 }
                 if($scope.roll.length == 2){
-                    var firstDigitString = $scope.roll.substring(0, 1);
-                    var secondDigitString = $scope.roll.substring(1);
+                    firstDigitString = $scope.roll.substring(0, 1);
+                    secondDigitString = $scope.roll.substring(1);
 
-                    var firstDigitInt = parseInt(firstDigitString);
-                    var secondDigitInt = parseInt(secondDigitString);
+                    firstDigitInt = parseInt(firstDigitString);
+                    secondDigitInt = parseInt(secondDigitString);
 
                     // is the second roll even? if so, add 5 to first
                     // roll. 10 becomes 0.
                     if(secondDigitInt % 2 == 0) {
-                        var outputInt = firstDigitInt + 5;
-                        var outputString = outputInt.toString();
+                        outputInt = firstDigitInt + 5;
+                        outputString = outputInt.toString();
                         $scope.output += outputString.substring(outputString.length - 1) + ' ';
                         $scope.roll = '';
                     }
                     else {
                         $scope.output += firstDigitString + ' ';
-                        $scope.roll = '';
                     }
                     resetRolls();
                 }
@@ -118,7 +117,7 @@ angular.module('diceware.controllers', [])
     }
 
     $scope.randomOrg = function() {
-        var i = 5;
+        i = 5;
         switch($scope.mode) {
                 case 1:
                     i = 3;
@@ -133,18 +132,24 @@ angular.module('diceware.controllers', [])
                     i = 5;
                     break;
             }
-        $http.get('https://www.random.org/integers/?num=' + i + '&min=1&max=6&col=1&base=10&format=plain&rnd=new').then(function(resp) {
-            $scope.roll = resp.data.replace(/\n/g, '');
-            checkRoll();
-        }, function(err) {
-            console.error('ERR', err);
-            // err.status will contain the status code
-        })
+        $http.get('https://www.random.org/integers/?num=' + i + '&min=1&max=6&col=1&base=10&format=plain&rnd=new')
+            .then(function(resp) {
+                $scope.roll = resp.data.replace(/\n/g, '');
+                checkRoll();
+            }, function(err) {
+                console.error('ERR', err);
+                // err.status will contain the status code
+            })
     }
 
     $scope.copyToClipboard = function() {
+        output = '';
+        if($scope.output != 'undefined')
+        {
+            output = $scope.output.trim();
+        }
         cordova.plugins.clipboard
-            .copy($scope.output.trim())
+            .copy(output)
             .then(function() {
                 $ionicLoading.show({ template: 'Passphrase copied.', noBackdrop: true, duration: 1000 });
             }, function() {
@@ -154,6 +159,41 @@ angular.module('diceware.controllers', [])
 
     $scope.clearOutput = function() {
         $scope.output = "";
-        $scope.roll = 0;
+        resetRolls();
+    }
+
+})
+
+.factory('database', function($cordovaSQLite) {
+    return {
+        getWord: function(roll) {
+            query = "select word from words where number = ?";
+            return $cordovaSQLite.execute(db, query, [roll]).then(function(res) {
+                result = res.rows.item(0)['word'];
+                return result;
+            }, function (err) {
+                console.error(err);
+            });
+        },
+        getAscii: function(roll) {
+            query = "select char from asciis where number = ?";
+            return $cordovaSQLite.execute(db, query, [roll]).then(function(res) {
+                result = res.rows.item(0)['char'];
+                return result;
+            }, function (err) {
+                console.error(err);
+            });
+
+        },
+        getAlphaNumeric: function(roll) {
+            query = "select char from alphanumerics where number = ?";
+            return $cordovaSQLite.execute(db, query, [roll]).then(function(res) {
+                result = res.rows.item(0)['char'];
+                return result;
+            }, function (err) {
+                console.error(err);
+            });
+        }
+
     }
 })
