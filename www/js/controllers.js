@@ -124,7 +124,7 @@ angular.module('diceware.controllers', [])
                     i = 5;
                     break;
             }
-        $http.get('https://www.random.org/integers/?num=' + i + '&min=1&max=6&col=1&base=10&format=plain&rnd=new').then(function(resp) {
+        $http.get('https://www.random.org/integers/?num=' + i + '&min=1&max=6&col=1&base=10&format=plain').then(function(resp) {
             $scope.roll = resp.data.replace(/\n/g, '');
             if($scope.roll == $scope.oldRoll) {
                 resetRolls();
@@ -134,6 +134,7 @@ angular.module('diceware.controllers', [])
             checkRoll();
         }, function(err) {
             console.error('ERR', err);
+            console.log(err.status);
             // err.status will contain the status code
         })
         $scope.waiting = false;
