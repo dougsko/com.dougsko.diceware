@@ -28,6 +28,11 @@
 </div>
 
 <div class="padding">
+    <a class="button button-block" ng-click="randomOrg()">Random.org</a>
+</div>
+
+
+<div class="padding">
     <label class="item item-input item-select">
         <div class="input-label">
             Output Type
@@ -40,11 +45,19 @@
     </label>
 </div>
 
-
-
-<div class="padding">
-    <a class="button button-block" ng-click="randomOrg()">Random.org</a>
+<div class="padding" ng-show="mode == 0">
+    <label class="item item-input item-select">
+        <div class="input-label">
+            Dictionary
+        </div>
+        <select ng-init="selectedDict = dicts[0]" 
+                ng-model="selectedDict" 
+                ng-options="dict for dict in dicts" 
+                ng-change="updateDict(selectedDict)">
+        </select>
+    </label>
 </div>
+
 
 <div class="padding">
     <div class="row">

@@ -3,12 +3,15 @@ angular.module('diceware.controllers', [])
 .controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
+    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'Esparanto', 'German', 'Japanese', 'Polish', 'Swedish'];
+    $scope.selectedDict = $scope.dicts[0];
     $scope.totalRolls = 5;
     $scope.numRolls = 0;
     $scope.roll = '';
     $scope.oldRoll = null;
     $scope.mode = 0;
     $scope.output = '';
+    $scope.words = diceware.words;
 
 
     // when the user presses a number
@@ -31,7 +34,7 @@ angular.module('diceware.controllers', [])
         switch ($scope.mode) {
             case 0:
                 if($scope.roll.length == 5) {
-                    $scope.output += diceware.words[$scope.roll] + ' ';
+                    $scope.output += $scope.words[$scope.roll] + ' ';
                     resetRolls();
                 }
                 break;
@@ -108,6 +111,40 @@ angular.module('diceware.controllers', [])
         $ionicLoading.show({ template: 'Roll ' + $scope.totalRolls + ' times.', noBackdrop: true, duration: 1000 });
     }
 
+    // when the user changes dictionary
+    $scope.updateDict = function(dict) {
+        $scope.selectedDict = dict;
+        if(dict == 'Standard English') {
+            $scope.words = diceware.words;
+        }
+        else if(dict == 'Alternative English') {
+            $scope.words = diceware.alternative;
+        }
+        else if(dict == 'Catalan') {
+            $scope.words = diceware.catalan;
+        }
+        else if(dict == 'Dutch') {
+            $scope.words = diceware.dutch;
+        }
+        else if(dict == 'Esperanto') {
+            $scope.words = diceware.esperanto;
+        }
+        else if(dict == 'German') {
+            $scope.words = diceware.german;
+        }
+        else if(dict == 'Japanese') {
+            $scope.words = diceware.japanese;
+        }
+        else if(dict == 'Polish') {
+            $scope.words = diceware.polish;
+        }
+        else if(dict == 'Swedish') {
+            $scope.words = diceware.swedish;
+        }
+        else {
+        }
+    }
+
     $scope.randomOrg = function() {
         var i = 5;
         switch($scope.mode) {
@@ -153,6 +190,7 @@ angular.module('diceware.controllers', [])
     $scope.clearOutput = function() {
         $scope.output = "";
         $scope.roll = 0;
+        resetRolls();
     }
 
 })
