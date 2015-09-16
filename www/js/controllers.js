@@ -3,7 +3,7 @@ angular.module('diceware.controllers', [])
 .controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
-    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'Esparanto', 'German', 'Japanese', 'Polish', 'Swedish'];
+    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'Esparanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
     $scope.selectedDict = $scope.dicts[0];
     $scope.totalRolls = 5;
     $scope.numRolls = 0;
@@ -138,6 +138,10 @@ angular.module('diceware.controllers', [])
         else if(dict == 'Polish') {
             $scope.words = diceware.polish;
         }
+        else if(dict == 'Spanish') {
+            $scope.words = diceware.spanish;
+        }
+
         else if(dict == 'Swedish') {
             $scope.words = diceware.swedish;
         }
