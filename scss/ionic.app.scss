@@ -18,6 +18,25 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+/*
+// http://www.google.it/design/spec/style/color.html#color-color-palette
+
+$stable: #4CAF50 !default; // 500
+$button-stable-active-bg: #ccff90 !default; // light green A100
+$dark: #1B5E20 !default; // 900
+*/
+
+
+.outputTitle {
+    color: grey;
+}
+
+.output {
+    background: lightgrey;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+}
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
