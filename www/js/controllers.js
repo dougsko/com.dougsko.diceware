@@ -1,9 +1,9 @@
 angular.module('diceware.controllers', [])
 
-.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading) {
+.controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading, $cordovaClipboard) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
-    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'Esparanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
+    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'Esperanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
     $scope.selectedDict = $scope.dicts[0];
     $scope.totalRolls = 5;
     $scope.numRolls = 0;
@@ -182,7 +182,8 @@ angular.module('diceware.controllers', [])
     }
 
     $scope.copyToClipboard = function() {
-        cordova.plugins.clipboard
+        //cordova.plugins.clipboard
+        $cordovaClipboard
             .copy($scope.output.trim())
             .then(function() {
                 $ionicLoading.show({ template: 'Passphrase copied.', noBackdrop: true, duration: 1000 });
