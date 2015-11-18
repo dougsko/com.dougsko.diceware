@@ -15,7 +15,11 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.splashscreen"
+    "org.apache.cordova.splashscreen",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    }
   ],
   "cordovaPlatforms": [
     "android"
