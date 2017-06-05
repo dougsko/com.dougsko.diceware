@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="20" id="com.dougsko.diceware" version="2.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="21" id="com.dougsko.diceware" version="2.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Diceware</name>
     <description>
         Creates secure passphrases using the Diceware method.
@@ -7,7 +7,7 @@
     <author email="dougtko@gmail.com" href="http://dougsko.com/">
         Doug Prostko
     </author>
-    <content original-src="index.html" src="http://10.96.161.50:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://world.std.com/*" />
     <allow-navigation href="http://world.std.com/*" />
