@@ -3,7 +3,7 @@ angular.module('diceware.controllers', [])
 .controller('DicewareCtrl', function($scope, $stateParams, $sce, $http, $ionicLoading, $cordovaClipboard) {
     $scope.outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     $scope.selectedOutputType = $scope.outputTypes[0];
-    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'Esperanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
+    $scope.dicts = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'EFF', 'Esperanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
     $scope.selectedDict = $scope.dicts[0];
     $scope.totalRolls = 5;
     $scope.numRolls = 0;
@@ -125,6 +125,9 @@ angular.module('diceware.controllers', [])
         }
         else if(dict == 'Dutch') {
             $scope.words = diceware.dutch;
+        }
+        else if(dict == 'EFF') {
+            $scope.words = diceware.eff;
         }
         else if(dict == 'Esperanto') {
             $scope.words = diceware.esperanto;
