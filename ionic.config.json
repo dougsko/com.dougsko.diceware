@@ -1,6 +1,6 @@
 {
   "name": "Diceware",
-  "app_id": "",
+  "integrations": {},
   "gulpStartupTasks": [
     "sass",
     "watch"
