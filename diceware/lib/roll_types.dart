@@ -11,7 +11,7 @@ class Roll {
         } else if(type == 'Alphanumeric') {
             rollsNeeded = 2;
         } else if(type == 'Numbers') {
-            rollsNeeded = 6;
+            rollsNeeded = 2;
         }
     }
 

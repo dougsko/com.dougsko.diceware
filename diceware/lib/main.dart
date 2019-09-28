@@ -341,13 +341,13 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                 // Here we take the value from the MyHomePage object that was created by
                 // the App.build method, and use it to set our appbar title.
                 title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                        Icon(Icons.casino),
-                        Text(' '),
+                        //Icon(Icons.casino),
+                        //Text(' '),
                         Text('Diceware'),
-                        Text(' '),
-                        Icon(Icons.lock),
+                        //Text(' '),
+                        //Icon(Icons.lock),
                     ],
                 ),
             ),
