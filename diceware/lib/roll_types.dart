@@ -3,7 +3,17 @@ class Roll {
     int rollsNeeded;
     List<String> roll;
 
-    Roll(this.type, this.rollsNeeded);
+    Roll(this.type) {
+        if(type == 'Words') {
+            rollsNeeded = 5;
+        } else if(type == 'ASCII') {
+            rollsNeeded = 3;
+        } else if(type == 'Alphanumeric') {
+            rollsNeeded = 2;
+        } else if(type == 'Numbers') {
+            rollsNeeded = 6;
+        }
+    }
 
     void makeRoll(String number) {
         roll.add(number);
@@ -18,7 +28,7 @@ class Roll {
 class WordRoll extends Roll {
     String lang;
 
-    WordRoll(String lang) : super('Words', 5);
+    WordRoll(this.lang) : super('Words');
 
     @override
     void checkRoll() {
@@ -26,7 +36,7 @@ class WordRoll extends Roll {
 }
 
 class ASCIIRoll extends Roll {
-    ASCIIRoll() : super('ASCII', 3);
+    ASCIIRoll() : super('ASCII');
 
     @override
     void checkRoll() {
@@ -34,7 +44,7 @@ class ASCIIRoll extends Roll {
 }
 
 class AlphaNumRoll extends Roll {
-    AlphaNumRoll() : super('Alphanumeric', 2);
+    AlphaNumRoll() : super('Alphanumeric');
 
     @override
     void checkRoll() {
@@ -43,7 +53,7 @@ class AlphaNumRoll extends Roll {
 }
 
 class NumberRoll extends Roll {
-    NumberRoll() : super('Numbers', 6);
+    NumberRoll() : super('Numbers');
 
     @override
     void checkRoll() {

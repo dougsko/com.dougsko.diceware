@@ -1,3 +1,5 @@
+import 'dart:ui' as prefix0;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'roll_types.dart';
@@ -65,7 +67,8 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     String roll = '';
     var availableLangs = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'EFF', 'Esperanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
     var outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
-    var rollType;
+    var rollType = Roll('Words');
+    Widget langDropdown;
 
     void clearOutput() {
         setState(() {
@@ -205,49 +208,57 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             ),
         );
 
-        Widget langDropdown = Container(
-            padding: new EdgeInsets.only(
-                left: 10,
-                right: 10,
-                top: 10,
-                bottom: 10,
-            ),
-            child: Row(
-                children: <Widget>[
-                    //Icon(Icons.language),
-                    Expanded(
-                        flex: 1,
-                        child: Text(
-                            'Dictionary:',
-                            textScaleFactor: 0.9,
-                            style: TextStyle(
-                                color: Colors.green.withOpacity(0.75),
+        if(rollType.type == 'Words') {
+            langDropdown = Container(
+                padding: new EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bottom: 10,
+                ),
+                child: Row(
+                    children: <Widget>[
+                        //Icon(Icons.language),
+                        Expanded(
+                            flex: 1,
+                            child: Text(
+                                'Dictionary:',
+                                textScaleFactor: 0.9,
+                                style: TextStyle(
+                                    color: Colors.green.withOpacity(0.75),
+                                ),
                             ),
                         ),
-                    ),
-                    Expanded(
-                        flex: 3,
-                        child: DropdownButton<String>(
-                            value: langValue,
-                            //icon: Icon(Icons.language),
-                            isExpanded: false,
-                            onChanged: (String newValue) {
-                                setState(() {
-                                    langValue = newValue;
-                                });
-                            },
-                            items: availableLangs
-                                .map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                );
-                            }).toList(),
+                        Expanded(
+                            flex: 3,
+                            child: DropdownButton<String>(
+                                value: langValue,
+                                //icon: Icon(Icons.language),
+                                isExpanded: false,
+                                onChanged: (String newValue) {
+                                    setState(() {
+                                        langValue = newValue;
+                                    });
+                                },
+                                items: availableLangs
+                                    .map<DropdownMenuItem<String>>((
+                                    String value) {
+                                    return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                    );
+                                }).toList(),
+                            ),
                         ),
-                    ),
-                ],
-            ),
-        );
+                    ],
+                ),
+            );
+        } else {
+            langDropdown = Container();
+        }
+
+
+
 
         Widget outputType = Container(
             padding: new EdgeInsets.only(
