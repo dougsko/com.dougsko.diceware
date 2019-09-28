@@ -65,6 +65,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     String roll = '';
     var availableLangs = ['Standard English', 'Alternative English', 'Catalan', 'Dutch', 'EFF', 'Esperanto', 'German', 'Japanese', 'Polish', 'Spanish', 'Swedish'];
     var outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
+    var rollType;
 
     void clearOutput() {
         setState(() {
@@ -274,6 +275,15 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             onChanged: (String newValue) {
                                 setState(() {
                                     outputTypeValue = newValue;
+                                    if(outputTypeValue == 'Words') {
+                                        rollType = WordRoll(langValue);
+                                    } else if(outputTypeValue == 'ASCII') {
+                                        rollType = ASCIIRoll();
+                                    } else if(outputTypeValue == 'Alphanumeric') {
+                                        rollType = AlphaNumRoll();
+                                    } else if(outputTypeValue == 'Numbers') {
+                                        rollType = NumberRoll();
+                                    }
                                 });
                             },
                             items: outputTypes
