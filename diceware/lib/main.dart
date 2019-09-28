@@ -268,6 +268,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             child: Row(
                 children: <Widget>[
                     //Icon(Icons.grade),
+                    // foo
                     Expanded(
                         flex: 1,
                         child: Text(
