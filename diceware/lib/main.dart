@@ -14,6 +14,7 @@ class Diceware extends StatelessWidget {
             title: 'Diceware',
             theme: ThemeData(
                 primarySwatch: Colors.green,
+                brightness: Brightness.dark,
             ),
             home: StatefulHome(),
         );
@@ -96,9 +97,28 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             color: Colors.green.withOpacity(0.75),
                         ),
                     ),
-                    Text(
-                        output,
-                        style: TextStyle(),
+                    Container(
+                        padding: new EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                        ),
+                        decoration: new BoxDecoration(
+                            color: Colors.white.withOpacity(0.20),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                  output,
+                                  style: TextStyle(
+                                      fontFamily: 'Verdana',
+                                      fontSize: 30.0,
+                                  ),
+                              ),
+                            ),
+                          ],
+                        ),
                     ),
                     Text(
                         'Rolls 0/5',
@@ -185,7 +205,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             ),
         );
 
-        Widget randomButton = Container(
+        Widget randomOrgButton = Container(
             padding: new EdgeInsets.only(
                 left: 10,
                 right: 10,
@@ -196,6 +216,37 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                 children: <Widget>[
                     Expanded(
                         flex: 1,
+                        child: MaterialButton(
+                            child: Text('Random.org'),
+                            color: Colors.green,
+                            textColor: Colors.white,
+                            onPressed: () {},
+                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
+                        ),
+                    ),
+                ],
+            ),
+        );
+
+        Widget randomButtons = Container(
+            padding: new EdgeInsets.all(10),
+            child: Row(
+                children: <Widget>[
+                    Expanded(
+                        flex: 10,
+                        child: MaterialButton(
+                            child: Text('Android PRNG'),
+                            color: Colors.green,
+                            textColor: Colors.white,
+                            onPressed: () {},
+                            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
+                        ),
+                    ),
+                    Spacer(
+                        flex: 1,
+                    ),
+                    Expanded(
+                        flex: 10,
                         child: MaterialButton(
                             child: Text('Random.org'),
                             color: Colors.green,
@@ -225,7 +276,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                                 'Dictionary:',
                                 textScaleFactor: 0.9,
                                 style: TextStyle(
-                                    color: Colors.green.withOpacity(0.75),
+                                    color: Colors.white.withOpacity(0.75),
                                 ),
                             ),
                         ),
@@ -275,7 +326,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             'Output Type:',
                             textScaleFactor: 0.9,
                             style: TextStyle(
-                                color: Colors.green.withOpacity(0.75),
+                                color: Colors.white.withOpacity(0.75),
                             ),
                         ),
                     ),
@@ -360,7 +411,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                     children: [
                         generateOutputSection(),
                         dieButtons,
-                        randomButton,
+                        randomButtons,
                         outputType,
                         langDropdown,
                         clearCopy,
