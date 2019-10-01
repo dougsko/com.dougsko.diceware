@@ -1,28 +1,38 @@
 class Roll {
     String type;
-    int rollsNeeded;
-    List<String> roll;
+    int numRollsNeeded;
+    int numRollsSoFar = 0;
+    List<String> roll = [];
+    var dict;
 
     Roll(this.type) {
         if(type == 'Words') {
-            rollsNeeded = 5;
+            numRollsNeeded = 5;
         } else if(type == 'ASCII') {
-            rollsNeeded = 3;
+            numRollsNeeded = 3;
         } else if(type == 'Alphanumeric') {
-            rollsNeeded = 2;
+            numRollsNeeded = 2;
         } else if(type == 'Numbers') {
-            rollsNeeded = 2;
+            numRollsNeeded = 2;
         }
     }
 
     void makeRoll(String number) {
         roll.add(number);
-        if(roll.length == rollsNeeded) {
+        numRollsSoFar += 1;
+        if(numRollsSoFar == numRollsNeeded) {
             checkRoll();
         }
     }
 
-    void checkRoll(){}
+    String checkRoll(){
+        return null;
+    }
+
+    @override
+    String toString() {
+        return [this.type, this.numRollsNeeded, this.numRollsSoFar].join(', ');
+    }
 }
 
 class WordRoll extends Roll {
@@ -31,7 +41,9 @@ class WordRoll extends Roll {
     WordRoll(this.lang) : super('Words');
 
     @override
-    void checkRoll() {
+    String checkRoll() {
+        print(this.dict[this.roll]);
+        return(this.dict[this.roll]);
   }
 }
 
@@ -39,7 +51,8 @@ class ASCIIRoll extends Roll {
     ASCIIRoll() : super('ASCII');
 
     @override
-    void checkRoll() {
+    String checkRoll() {
+        return null;
   }
 }
 
@@ -47,7 +60,8 @@ class AlphaNumRoll extends Roll {
     AlphaNumRoll() : super('Alphanumeric');
 
     @override
-    void checkRoll() {
+    String checkRoll() {
+       return null;
     }
 
 }
@@ -56,7 +70,8 @@ class NumberRoll extends Roll {
     NumberRoll() : super('Numbers');
 
     @override
-    void checkRoll() {
+    String checkRoll() {
+       return null;
   }
 
 }
