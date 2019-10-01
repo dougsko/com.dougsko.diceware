@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart';
 import 'roll_types.dart';
 
 void main() => runApp(Diceware());
@@ -64,6 +66,7 @@ class StatefulHome extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<StatefulHome> {
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
     String langValue = 'Standard English';
     String outputTypeValue = 'Words';
     String output = '';
@@ -84,18 +87,66 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     var outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
     Widget langDropdown;
 
+    _MyStatefulWidgetState() {
+        setLang('Standard English');
+    }
+
+    void displaySnackBar(String text) {
+        _scaffoldKey.currentState.showSnackBar(
+            SnackBar(content: Text(text)));
+    }
+
+    void localRandom() {
+        var random = Random.secure();
+        List<String> value = [];
+        roll.roll.clear();
+        for(int i = 0; i < roll.numRollsNeeded; i++) {
+            numberPress((random.nextInt(6) + 1).toString());
+        }
+    }
+
+    Future<Response> randomOrg() async {
+        //String url = 'https://www.random.org/integers/?num=' + roll.numRollsNeeded.toString() + '&min=1&max=6&col=1&base=10&format=plain';
+        String url = 'https://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain';
+        url = 'http://dougsko.com';
+        var response = await get(url);
+        print(response);
+        return response;
+    }
+
+    void processRandomOrg() {
+        randomOrg().then((response) {
+            setState(() {
+                print(response.body.toString());
+            });
+        });
+    }
+
+
     void clearOutput() {
         setState(() {
             output = '';
             roll = Roll(outputTypeValue);
+            roll.numRollsSoFar = 0;
+            roll.roll.clear();
         });
     }
+
 
     void numberPress(String number) {
         setState(() {
             roll.makeRoll(number);
-            //output += number; // for debugging
-            output += roll.checkRoll().toString();
+            if(roll.numRollsNeeded == roll.numRollsSoFar) {
+                if(roll.dict[roll.getRoll()] == 'null') {
+                    roll.roll.clear();
+                    roll.numRollsSoFar = 0;
+                    displaySnackBar('Returned null.  Please re-roll!');
+                } else {
+                    roll.passphrase.add(roll.dict[roll.getRoll()]);
+                    roll.numRollsSoFar = 0;
+                    roll.roll.clear();
+                }
+            }
         });
     }
 
@@ -105,12 +156,32 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             dictPath = 'assets/dictionaries/std_english.json';
         } else if(lang == 'Alternative English') {
             dictPath = 'assets/dictionaries/alt_english.json';
+        } else if(lang == 'Catalan') {
+            dictPath = 'assets/dictionaries/catalan.json';
+        } else if(lang == 'Dutch') {
+            dictPath = 'assets/dictionaries/dutch.json';
+        } else if(lang == 'EFF') {
+            dictPath = 'assets/dictionaries/eff.json';
+        } else if(lang == 'Esperanto') {
+            dictPath = 'assets/dictionaries/esperanto.json';
+        } else if(lang == 'German') {
+            dictPath = 'assets/dictionaries/german.json';
+        } else if(lang == 'Japanese') {
+            dictPath = 'assets/dictionaries/japanese.json';
+        } else if(lang == 'Polish') {
+            dictPath = 'assets/dictionaries/polish.json';
+        } else if(lang == 'Spanish') {
+            dictPath = 'assets/dictionaries/spanish.json';
+        } else if(lang == 'Swedish') {
+            dictPath = 'assets/dictionaries/swedish.json';
+        } else if(lang == 'ASCII') {
+            dictPath = 'assets/dictionaries/ascii.json';
         }
         Map langMap = await rootBundle.loadStructuredData(dictPath, (String s) async {
             return json.decode(s);
         });
         roll.dict = langMap;
-        print(langMap['12345']);
+        //print(roll.dict['12345']);
     }
 
     Container generateOutputSection() {
@@ -142,7 +213,8 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             children: <Widget>[
                                 Expanded(
                                     child: Text(
-                                        output,
+                                        //output,
+                                        roll.formatPassphrase(),
                                         style: TextStyle(
                                             fontFamily: 'Verdana',
                                             fontSize: 30.0,
@@ -258,7 +330,9 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             child: Text('Local PRNG'),
                             color: Colors.green,
                             textColor: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                                localRandom();
+                            },
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0))),
                     ),
@@ -271,9 +345,31 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             child: Text('Random.org'),
                             color: Colors.green,
                             textColor: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                                processRandomOrg();
+                            },
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0))),
+                    ),
+                    Expanded(
+                        flex: 10,
+                        child: FutureBuilder<Response>(
+                          future: randomOrg(),
+                          builder: (context, snapshot) {
+                              if(snapshot.hasData) {
+                                  print(snapshot);
+                              }
+                            return MaterialButton(
+                                child: Text('Random 2'),
+                                color: Colors.green,
+                                textColor: Colors.white,
+                                onPressed: () {
+                                    processRandomOrg();
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: new BorderRadius.circular(30.0)));
+                          }
+                        ),
                     ),
                 ],
             ),
@@ -327,6 +423,10 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             );
         } else {
             langDropdown = Container();
+        }
+
+        if(roll.type == 'ASCII') {
+            setLang('ASCII');
         }
 
         Widget outputType = Container(
@@ -388,7 +488,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             ),
             child: Row(
                 children: <Widget>[
-                    ClipButton(output),
+                    ClipButton(roll.formatPassphrase()),
                     Expanded(
                         child: Column(
                             children: <Widget>[
@@ -406,6 +506,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
         );
 
         return Scaffold(
+            key: _scaffoldKey,
             appBar: AppBar(
                 // Here we take the value from the MyHomePage object that was created by
                 // the App.build method, and use it to set our appbar title.
@@ -420,21 +521,25 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                     ],
                 ),
             ),
-            body: Center(
-                // Center is a layout widget. It takes a single child and positions it
-                // in the middle of the parent.
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                        generateOutputSection(),
-                        dieButtons,
-                        randomButtons,
-                        outputType,
-                        langDropdown,
-                        clearCopy,
-                    ],
-                ),
+            body: Builder(
+                builder: (context) =>
+                    Center(
+                        // Center is a layout widget. It takes a single child and positions it
+                        // in the middle of the parent.
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                                generateOutputSection(),
+                                dieButtons,
+                                randomButtons,
+                                outputType,
+                                langDropdown,
+                                clearCopy,
+                            ],
+                        ),
+                    ),
             ),
+
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
                     // Add your onPressed code here!

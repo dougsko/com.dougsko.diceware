@@ -20,6 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.14.1
+  http: 0.12.0+2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -56,7 +57,7 @@ flutter:
     - assets/dictionaries/catalan.json
     - assets/dictionaries/dutch.json
     - assets/dictionaries/eff.json
-    - assets/dictionaries/esparanto.json
+    - assets/dictionaries/esperanto.json
     - assets/dictionaries/german.json
     - assets/dictionaries/polish.json
     - assets/dictionaries/spanish.json

@@ -4,6 +4,7 @@ class Roll {
     int numRollsSoFar = 0;
     List<String> roll = [];
     var dict;
+    var passphrase = [];
 
     Roll(this.type) {
         if(type == 'Words') {
@@ -18,10 +19,24 @@ class Roll {
     }
 
     void makeRoll(String number) {
-        roll.add(number);
-        numRollsSoFar += 1;
-        if(numRollsSoFar == numRollsNeeded) {
+        if(this.roll.length < this.numRollsNeeded) {
+            roll.add(number);
+            numRollsSoFar += 1;
+        }
+        if (numRollsSoFar == numRollsNeeded) {
             checkRoll();
+        }
+    }
+
+    String getRoll() {
+        return this.roll.join('');
+    }
+
+    String formatPassphrase() {
+        if(this.type == 'Words') {
+            return this.passphrase.join(' ');
+        } else {
+            return this.passphrase.join('');
         }
     }
 
@@ -42,9 +57,8 @@ class WordRoll extends Roll {
 
     @override
     String checkRoll() {
-        print(this.dict[this.roll]);
-        return(this.dict[this.roll]);
-  }
+        return null;
+    }
 }
 
 class ASCIIRoll extends Roll {
@@ -53,7 +67,7 @@ class ASCIIRoll extends Roll {
     @override
     String checkRoll() {
         return null;
-  }
+    }
 }
 
 class AlphaNumRoll extends Roll {
@@ -61,7 +75,7 @@ class AlphaNumRoll extends Roll {
 
     @override
     String checkRoll() {
-       return null;
+        return null;
     }
 
 }
@@ -71,7 +85,7 @@ class NumberRoll extends Roll {
 
     @override
     String checkRoll() {
-       return null;
-  }
+        return null;
+    }
 
 }
