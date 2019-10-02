@@ -26,6 +26,48 @@ class Diceware extends StatelessWidget {
     }
 }
 
+class HelpCard extends StatelessWidget {
+    HelpCard({Key key}) : super(key: key);
+
+    @override
+    Widget build(BuildContext context) {
+        return Container(
+            child: Card(
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                        const ListTile(
+                            leading: Icon(Icons.album),
+                            title: Text('The Enchanted Nightingale'),
+                            subtitle: Text(
+                                'Music by Julie Gable. Lyrics by Sidney Stein.'),
+                        ),
+                        ButtonTheme.bar(
+                            // make buttons use the appropriate styles for cards
+                            child: ButtonBar(
+                                children: <Widget>[
+                                    FlatButton(
+                                        child: const Text('BUY TICKETS'),
+                                        onPressed: () {
+                                            /* ... */
+                                        },
+                                    ),
+                                    FlatButton(
+                                        child: const Text('LISTEN'),
+                                        onPressed: () {
+                                            /* ... */
+                                        },
+                                    ),
+                                ],
+                            ),
+                        ),
+                    ],
+                ),
+            ),
+        );
+    }
+}
+
 class ClipButton extends StatelessWidget {
     final String text;
 
@@ -98,7 +140,6 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
 
     void localRandom() {
         var random = Random.secure();
-        List<String> value = [];
         roll.roll.clear();
         for(int i = 0; i < roll.numRollsNeeded; i++) {
             numberPress((random.nextInt(6) + 1).toString());
@@ -106,45 +147,72 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     }
 
     Future<Response> randomOrg() async {
-        //String url = 'https://www.random.org/integers/?num=' + roll.numRollsNeeded.toString() + '&min=1&max=6&col=1&base=10&format=plain';
-        String url = 'https://www.random.org/integers/?num=5&min=1&max=6&col=1&base=10&format=plain';
-        url = 'http://dougsko.com';
+        String url = 'https://www.random.org/integers/?num=' + roll.numRollsNeeded.toString() + '&min=1&max=6&col=1&base=10&format=plain';
         var response = await get(url);
-        print(response);
         return response;
     }
 
     void processRandomOrg() {
+        List<String> random = [];
+        print(roll.toString());
         randomOrg().then((response) {
             setState(() {
-                print(response.body.toString());
+                if(response.statusCode == 200) {
+                    random = response.body.split('\n');
+                    random.forEach((number) {
+                        numberPress(number);
+                    });
+                } else {
+                    print(response.statusCode);
+                }
+                roll.resetRoll();
             });
         });
     }
 
-
     void clearOutput() {
         setState(() {
             output = '';
-            roll = Roll(outputTypeValue);
-            roll.numRollsSoFar = 0;
-            roll.roll.clear();
+            roll.resetRoll();
+            roll.passphrase.clear();
         });
     }
-
 
     void numberPress(String number) {
         setState(() {
             roll.makeRoll(number);
             if(roll.numRollsNeeded == roll.numRollsSoFar) {
-                if(roll.dict[roll.getRoll()] == 'null') {
-                    roll.roll.clear();
-                    roll.numRollsSoFar = 0;
-                    displaySnackBar('Returned null.  Please re-roll!');
+                if(roll.type == 'Numbers') {
+                    var first = int.parse(roll.roll[0]);
+                    var second = int.parse(roll.roll[1]);
+                    var outputInt;
+
+                    if(first == 6) {
+                        roll.resetRoll();
+                        displaySnackBar('First roll was a 6.  Please re-roll!');
+                        return;
+                    }
+
+                    // is the second roll even? if so, add 5 to first roll.
+                    // 10 becomes 0.
+                    if(second % 2 == 0) {
+                        outputInt = first + 5;
+                        if(outputInt == 10) {
+                            outputInt = 0;
+                        }
+                    } else {
+                        outputInt = first;
+                    }
+                    roll.passphrase.add(outputInt.toString());
+                    roll.resetRoll();
                 } else {
-                    roll.passphrase.add(roll.dict[roll.getRoll()]);
-                    roll.numRollsSoFar = 0;
-                    roll.roll.clear();
+                    if (roll.dict[roll.getRoll()] == 'null') {
+                        roll.resetRoll();
+                        displaySnackBar('Returned null.  Please re-roll!');
+                    } else {
+                        roll.passphrase.add(roll.dict[roll.getRoll()]);
+                        roll.resetRoll();
+                    }
                 }
             }
         });
@@ -176,6 +244,10 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             dictPath = 'assets/dictionaries/swedish.json';
         } else if(lang == 'ASCII') {
             dictPath = 'assets/dictionaries/ascii.json';
+        } else if(lang == 'Alphanumeric') {
+            dictPath = 'assets/dictionaries/alphanumeric.json';
+        } else if(lang == 'Numbers') {
+            return;
         }
         Map langMap = await rootBundle.loadStructuredData(dictPath, (String s) async {
             return json.decode(s);
@@ -192,14 +264,6 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                    /*
-                    Text(
-                        'Output',
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.75),
-                        ),
-                    ),
-                     */
                     Container(
                         padding: new EdgeInsets.only(
                             left: 10,
@@ -246,31 +310,24 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     }
 
     Expanded generateDieButton(String number) {
-        String unicode = '';
         String asset;
         switch (number) {
             case '1':
-                unicode = '\u2680';
                 asset = 'assets/dice-1.svg';
                 break;
             case '2':
-                unicode = '\u2681';
                 asset = 'assets/dice-2.svg';
                 break;
             case '3':
-                unicode = '\u2682';
                 asset = 'assets/dice-3.svg';
                 break;
             case '4':
-                unicode = '\u2683';
                 asset = 'assets/dice-4.svg';
                 break;
             case '5':
-                unicode = '\u2684';
                 asset = 'assets/dice-5.svg';
                 break;
             case '6':
-                unicode = '\u2685';
                 asset = 'assets/dice-6.svg';
                 break;
         }
@@ -351,32 +408,13 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0))),
                     ),
-                    Expanded(
-                        flex: 10,
-                        child: FutureBuilder<Response>(
-                          future: randomOrg(),
-                          builder: (context, snapshot) {
-                              if(snapshot.hasData) {
-                                  print(snapshot);
-                              }
-                            return MaterialButton(
-                                child: Text('Random 2'),
-                                color: Colors.green,
-                                textColor: Colors.white,
-                                onPressed: () {
-                                    processRandomOrg();
-                                },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: new BorderRadius.circular(30.0)));
-                          }
-                        ),
-                    ),
                 ],
             ),
         );
 
-        if (roll.type == 'Words') {
-            langDropdown = Container(
+        langDropdown = Visibility(
+            visible: roll.type == 'Words',
+            child: Container(
                 padding: new EdgeInsets.only(
                     left: 10,
                     right: 10,
@@ -420,14 +458,17 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                         ),
                     ],
                 ),
-            );
-        } else {
-            langDropdown = Container();
-        }
+            ),
+        );
 
         if(roll.type == 'ASCII') {
             setLang('ASCII');
+        } else if(roll.type == 'Alphanumeric') {
+            setLang('Alphanumeric');
+        } else if(roll.type == 'Numbers') {
+            setLang('Numbers');
         }
+
 
         Widget outputType = Container(
             padding: new EdgeInsets.only(
@@ -505,6 +546,69 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             ),
         );
 
+        void _showDialog() {
+            // flutter defined function
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                    // return object of type Dialog
+                    return AlertDialog(
+                        title: new Text("How to use Diceware"),
+                        content: Container(
+                            width: 250,
+                          child: Column(
+                              children: <Widget>[
+                                  Expanded(
+                                      child: ListView(
+                                          children: <Widget>[
+                                              Text("Step 1: Choose your output\n",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      decoration: TextDecoration.underline,
+                                                  ),
+                                              ),
+                                              Text('Use the selector to choose either Words, Alphanumeric, ASCII, or Numbers.  You can change your output as you go in order to mix and match different types.\n'),
+                                              Text('Step 2: Roll those dice!\n',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      decoration: TextDecoration.underline,
+                                                  ),
+                                              ),
+                                              Text('The number of rolls required to get an output will be shown under the output line.  If you need five rolls then roll five dice or one die five times.  If you do not have dice, use the Random.org button to securely retrieve true random numbers.\n'),
+                                              Text('Step 3: Enter your rolls\n',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      decoration: TextDecoration.underline,
+                                                  ),
+                                              ),
+                                              Text('For each roll of the die or dice, enter the number using the numbered buttons near the top of the interface.  When the required number of rolls for your output have been entered, the output text will be shown at the output line, just above the numbered buttons.\n'),
+                                              Text('Step 4: Rinse and repeat!\n',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      decoration: TextDecoration.underline,
+                                                  ),
+                                              ),
+                                              Text('It is recommended that you build up your passphrase to be at least five words long.  Use the Copy button to copy your output to the clipboard when you are finished.\n'),
+                                          ],
+                                      ),
+                                  ),
+                              ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                            // usually buttons at the bottom of the dialog
+                            new FlatButton(
+                                child: new Text("Close"),
+                                onPressed: () {
+                                    Navigator.of(context).pop();
+                                },
+                            ),
+                        ]
+                    );
+                },
+            );
+        }
+
         return Scaffold(
             key: _scaffoldKey,
             appBar: AppBar(
@@ -526,15 +630,19 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                     Center(
                         // Center is a layout widget. It takes a single child and positions it
                         // in the middle of the parent.
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                                generateOutputSection(),
-                                dieButtons,
-                                randomButtons,
-                                outputType,
-                                langDropdown,
-                                clearCopy,
+                        child: ListView(
+                            children: <Widget>[
+                                Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                        generateOutputSection(),
+                                        dieButtons,
+                                        randomButtons,
+                                        outputType,
+                                        langDropdown,
+                                        clearCopy,
+                                    ],
+                                ),
                             ],
                         ),
                     ),
@@ -542,7 +650,8 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
 
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                    // Add your onPressed code here!
+                    print('help!');
+                    _showDialog();
                 },
                 child: Icon(Icons.help),
             ),

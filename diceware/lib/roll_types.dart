@@ -23,9 +23,11 @@ class Roll {
             roll.add(number);
             numRollsSoFar += 1;
         }
+        /*
         if (numRollsSoFar == numRollsNeeded) {
             checkRoll();
         }
+         */
     }
 
     String getRoll() {
@@ -40,13 +42,15 @@ class Roll {
         }
     }
 
-    String checkRoll(){
-        return null;
+    void resetRoll() {
+        this.roll.clear();
+        this.numRollsSoFar = 0;
+        //this.passphrase.clear();
     }
 
     @override
     String toString() {
-        return [this.type, this.numRollsNeeded, this.numRollsSoFar].join(', ');
+        return [this.type, this.numRollsNeeded, this.numRollsSoFar, this.roll.toString(), this.passphrase].join(', ');
     }
 }
 
@@ -54,38 +58,18 @@ class WordRoll extends Roll {
     String lang;
 
     WordRoll(this.lang) : super('Words');
-
-    @override
-    String checkRoll() {
-        return null;
-    }
 }
 
 class ASCIIRoll extends Roll {
     ASCIIRoll() : super('ASCII');
-
-    @override
-    String checkRoll() {
-        return null;
-    }
 }
 
 class AlphaNumRoll extends Roll {
     AlphaNumRoll() : super('Alphanumeric');
 
-    @override
-    String checkRoll() {
-        return null;
-    }
-
 }
 
 class NumberRoll extends Roll {
     NumberRoll() : super('Numbers');
-
-    @override
-    String checkRoll() {
-        return null;
-    }
 
 }
