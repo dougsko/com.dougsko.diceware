@@ -1,6 +1,6 @@
-# diceware
+# Diceware
 
-A cryptographically secure passphrase generation method
+A cryptographically secure passphrase generation method.
 
 ## Getting Started
 
