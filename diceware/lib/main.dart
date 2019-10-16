@@ -26,48 +26,6 @@ class Diceware extends StatelessWidget {
     }
 }
 
-class HelpCard extends StatelessWidget {
-    HelpCard({Key key}) : super(key: key);
-
-    @override
-    Widget build(BuildContext context) {
-        return Container(
-            child: Card(
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                        const ListTile(
-                            leading: Icon(Icons.album),
-                            title: Text('The Enchanted Nightingale'),
-                            subtitle: Text(
-                                'Music by Julie Gable. Lyrics by Sidney Stein.'),
-                        ),
-                        ButtonTheme.bar(
-                            // make buttons use the appropriate styles for cards
-                            child: ButtonBar(
-                                children: <Widget>[
-                                    FlatButton(
-                                        child: const Text('BUY TICKETS'),
-                                        onPressed: () {
-                                            /* ... */
-                                        },
-                                    ),
-                                    FlatButton(
-                                        child: const Text('LISTEN'),
-                                        onPressed: () {
-                                            /* ... */
-                                        },
-                                    ),
-                                ],
-                            ),
-                        ),
-                    ],
-                ),
-            ),
-        );
-    }
-}
-
 class ClipButton extends StatelessWidget {
     final String text;
 
