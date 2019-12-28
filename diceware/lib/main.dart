@@ -78,6 +78,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
         'Dutch',
         'EFF',
         'Esperanto',
+        'Eyeware',
         'German',
         'Japanese',
         'Polish',
@@ -190,6 +191,8 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             dictPath = 'assets/dictionaries/eff.json';
         } else if(lang == 'Esperanto') {
             dictPath = 'assets/dictionaries/esperanto.json';
+        } else if(lang == 'Eyeware') {
+            dictPath = 'assets/dictionaries/eyeware.json';
         } else if(lang == 'German') {
             dictPath = 'assets/dictionaries/german.json';
         } else if(lang == 'Japanese') {

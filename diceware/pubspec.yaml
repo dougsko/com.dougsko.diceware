@@ -59,6 +59,7 @@ flutter:
     - assets/dictionaries/dutch.json
     - assets/dictionaries/eff.json
     - assets/dictionaries/esperanto.json
+    - assets/dictionaries/eyeware.json
     - assets/dictionaries/german.json
     - assets/dictionaries/polish.json
     - assets/dictionaries/spanish.json
