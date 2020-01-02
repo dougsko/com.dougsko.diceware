@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -31,37 +31,32 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 28
-
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
-
     defaultConfig {
         applicationId "com.dougsko.diceware"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias 'publish key'
+            keyPassword 'Dougsko123!'
+            storeFile file('/Users/dprostko/bin/com.dougsko.diceware/diceware/android/app/publish_keystore')
+            storePassword 'Dougsko123!'
         }
     }
-
     buildTypes {
         release {
-            minifyEnabled false
-            useProguard false
+            minifyEnabled true
+            //useProguard true
+            shrinkResources true
             signingConfig signingConfigs.release
         }
         debug {
@@ -69,8 +64,10 @@ android {
             //shrinkResources true
             //useProguard true
             //proguardFiles getDefaultProguardFile('proguard-android.txt'),
-             //       'proguard-rules.pro'
+            //       'proguard-rules.pro'
         }
+    }
+    productFlavors {
     }
 }
 
@@ -79,8 +76,8 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
