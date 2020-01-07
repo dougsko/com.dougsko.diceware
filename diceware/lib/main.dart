@@ -404,8 +404,10 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                                 onChanged: (String newValue) {
                                     setState(() {
                                         langValue = newValue;
+                                        var oldPassphrase = roll.passphrase;
                                         roll = WordRoll(langValue);
                                         setLang(langValue);
+                                        roll.passphrase = oldPassphrase;
                                     });
                                 },
                                 items: availableLangs
@@ -422,6 +424,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             ),
         );
 
+        /*
         if(roll.type == 'ASCII') {
             setLang('ASCII');
         } else if(roll.type == 'Alphanumeric') {
@@ -429,6 +432,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
         } else if(roll.type == 'Numbers') {
             setLang('Numbers');
         }
+        */
 
 
         Widget outputType = Container(
@@ -439,7 +443,6 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             child: Row(
                 children: <Widget>[
                     //Icon(Icons.grade),
-                    // foo
                     Expanded(
                         flex: 1,
                         child: Text(
@@ -458,15 +461,21 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                             onChanged: (String newValue) {
                                 setState(() {
                                     outputTypeValue = newValue;
+                                    var oldPassphrase = roll.passphrase;
                                     if (outputTypeValue == 'Words') {
                                         roll = WordRoll(langValue);
+                                        setLang(langValue);
                                     } else if (outputTypeValue == 'ASCII') {
                                         roll = ASCIIRoll();
+                                        setLang('ASCII');
                                     } else if (outputTypeValue == 'Alphanumeric') {
                                         roll = AlphaNumRoll();
+                                        setLang('Alphanumeric');
                                     } else if (outputTypeValue == 'Numbers') {
                                         roll = NumberRoll();
+                                        setLang('Numbers');
                                     }
+                                    roll.passphrase = oldPassphrase;
                                 });
                             },
                             items: outputTypes.map<DropdownMenuItem<String>>((String value) {

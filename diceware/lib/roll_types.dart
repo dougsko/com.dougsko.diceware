@@ -35,11 +35,14 @@ class Roll {
     }
 
     String formatPassphrase() {
+        return this.passphrase.join(' ');
+        /*
         if(this.type == 'Words') {
             return this.passphrase.join(' ');
         } else {
             return this.passphrase.join('');
         }
+         */
     }
 
     void resetRoll() {
