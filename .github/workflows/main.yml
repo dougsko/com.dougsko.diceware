@@ -22,10 +22,13 @@ jobs:
         flutter-version: '1.17.5'
     - run: flutter pub get
       working-directory: ./diceware
-    - run: flutter run test/widget_test.dart
-      working-directory: ./diceware
-    - run: flutter build appbundle
-      working-directory: ./diceware
+    #- run: flutter run test/widget_test.dart
+    #  working-directory: ./diceware
+    #- run: flutter build appbundle
+    #  working-directory: ./diceware
+    - uses: maierj/fastlane-action@v1.4.0
+      with:
+        lane: 'test'
     #- name: Create a Release APK
     #  uses: ncipollo/release-action@v1
     #  with:
