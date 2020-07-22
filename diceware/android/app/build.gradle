@@ -46,10 +46,10 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias 'publish key'
-            keyPassword 'Dougsko123!'
-            storeFile file('/Users/dprostko/bin/com.dougsko.diceware/diceware/android/app/publish_keystore')
-            storePassword 'Dougsko123!'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
     buildTypes {
