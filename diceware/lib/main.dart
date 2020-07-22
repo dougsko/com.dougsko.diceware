@@ -211,9 +211,11 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
         } else if(lang == 'Numbers') {
             return;
         }
+
         Map langMap = await rootBundle.loadStructuredData(dictPath, (String s) async {
             return json.decode(s);
         });
+
         roll.dict = langMap;
         //print(roll.dict['12345']);
     }
