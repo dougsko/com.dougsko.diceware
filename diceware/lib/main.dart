@@ -113,7 +113,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
 
     void processRandomOrg() {
         List<String> random = [];
-        print(roll.toString());
+        //print(roll.toString());
         randomOrg().then((response) {
             setState(() {
                 if(response.statusCode == 200) {
@@ -620,7 +620,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
 
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                    print('help!');
+                    //print('help!');
                     _showDialog();
                 },
                 child: Icon(Icons.help),
