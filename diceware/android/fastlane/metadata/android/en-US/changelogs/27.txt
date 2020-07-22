@@ -1,0 +1,2 @@
+- You can now use more than one dictionary to create a passphrase.
+- Added a 'Lord of the Rings'-based dictionary called, Eyeware, from https://github.com/nightsense/eyeware.

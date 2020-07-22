@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000467">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: bundleRelease" time="0.988143">
+        
+          <failure message="/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:253:in `block in execute_action'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:227:in `chdir'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:227:in `execute_action'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:42:in `block (2 levels) in parsing_binding'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/lane_manager.rb:47:in `cruise_lane'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/command_line_handler.rb:36:in `handle'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/commands_generator.rb:108:in `block (2 levels) in run'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/commander-fastlane-4.4.6/lib/commander/command.rb:178:in `call'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/commander-fastlane-4.4.6/lib/commander/command.rb:153:in `run'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/commander-fastlane-4.4.6/lib/commander/runner.rb:476:in `run_active_command'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:76:in `run!'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/commander-fastlane-4.4.6/lib/commander/delegates.rb:15:in `run!'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/commands_generator.rb:352:in `run'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/commands_generator.rb:41:in `start'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/fastlane/lib/fastlane/cli_tools_distributor.rb:119:in `take_off'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/gems/fastlane-2.152.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/bin/fastlane:23:in `load'&#10;/usr/local/Cellar/fastlane/2.152.0/libexec/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;Exit status of command '/Users/doug/IdeaProjects/com.dougsko.diceware/diceware/android/gradlew bundleRelease -p .' was 1 instead of 0.&#10;&#10;FAILURE: Build failed with an exception.&#10;&#10;* What went wrong:&#10;Could not initialize class org.codehaus.groovy.runtime.InvokerHelper&#10;&#10;* Try:&#10;Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.&#10;&#10;* Get more help at https://help.gradle.org&#10;&#10;BUILD FAILED in 0s&#10;" />
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
