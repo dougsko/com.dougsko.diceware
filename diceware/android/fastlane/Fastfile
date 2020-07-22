@@ -40,7 +40,6 @@ platform :android do
   lane :beta do
     #gradle(task: 'bundleRelease', build_type: 'Release')
     sh "flutter build appbundle"
-    sh "fastlane supply --aab ../../build/app/outputs/bundle/release/app-release.aab --track beta --rollout 0.5"
-    #upload_to_play_store(track: 'beta')
+    upload_to_play_store(track: 'beta', aab: '../build/app/outputs/bundle/release/app-release.aab', rollout: '0.5')
   end
 end
