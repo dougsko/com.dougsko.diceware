@@ -5,26 +5,44 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:diceware/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+
+  testWidgets('The UI renders', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(Diceware());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('Diceware'), findsOneWidget);
+    expect(find.byType(SvgPicture), findsNWidgets(6));
+    expect(find.text('Local PRNG'), findsOneWidget);
+    expect(find.byIcon(Icons.clear), findsOneWidget);
+    expect(find.byIcon(Icons.content_copy), findsOneWidget);
+    expect(find.byIcon(Icons.help), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('test basic functionality', (WidgetTester tester) async {
+    await tester.pumpWidget(Diceware());
+
+    Finder oneDice = find.byType(SvgPicture).first;
+
+    await tester.tap(oneDice);
+    await tester.tap(oneDice);
+    await tester.tap(oneDice);
+    await tester.tap(oneDice);
+    await tester.tap(oneDice);
+    await tester.pumpAndSettle();
+    expect(find.text('a'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.clear));
+    await tester.pumpAndSettle();
+    expect(find.text('a'), findsNothing);
   });
 }

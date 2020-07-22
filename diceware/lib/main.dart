@@ -140,6 +140,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     void numberPress(String number) {
         setState(() {
             roll.makeRoll(number);
+            //print(roll.dict);
             if(roll.numRollsNeeded == roll.numRollsSoFar) {
                 if(roll.type == 'Numbers') {
                     var first = int.parse(roll.roll[0]);
