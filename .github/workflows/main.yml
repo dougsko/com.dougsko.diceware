@@ -21,8 +21,11 @@ jobs:
       with:
         flutter-version: '1.17.5'
     - run: flutter pub get
+      working-directory: ./diceware
     - run: flutter run test/widget_test.dart
+      working-directory: ./diceware
     - run: flutter build appbundle
+      working-directory: ./diceware
     #- name: Create a Release APK
     #  uses: ncipollo/release-action@v1
     #  with:
