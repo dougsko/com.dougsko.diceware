@@ -29,6 +29,7 @@ jobs:
     - uses: maierj/fastlane-action@v1.4.0
       with:
         lane: 'test'
+        subdirectory: 'diceware/android'
     #- name: Create a Release APK
     #  uses: ncipollo/release-action@v1
     #  with:
