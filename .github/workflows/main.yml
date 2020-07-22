@@ -1,0 +1,37 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        flutter-version: '1.17.5'
+    - run: flutter pub get
+      working-directory: ./diceware
+    #- run: flutter run test/widget_test.dart
+    #  working-directory: ./diceware
+    #- run: flutter build appbundle
+    #  working-directory: ./diceware
+    - uses: maierj/fastlane-action@v1.4.0
+      with:
+        lane: 'test'
+    #- name: Create a Release APK
+    #  uses: ncipollo/release-action@v1
+    #  with:
+    #            tag: "latest"
+    #    artifacts: "build/app/outputs/apk/debug/*.apk"
+    #    token: ${{ secrets.TOKEN_NAME }}
