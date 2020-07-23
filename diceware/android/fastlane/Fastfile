@@ -19,8 +19,6 @@ default_platform(:android)
 platform :android do
   desc "Runs all the tests"
   lane :test do
-    #gradle(task: "test")
-    #sh "flutter test"
     sh "flutter run test/widget_test.dart"
   end
 
@@ -40,7 +38,6 @@ platform :android do
   end
 
   lane :beta do
-    #gradle(task: 'bundleRelease', build_type: 'Release')
     sh "flutter build appbundle"
     #upload_to_play_store(track: 'beta', aab: '../build/app/outputs/bundle/release/app-release.aab', rollout: '0.5')
   end
