@@ -1,4 +1,4 @@
-name: CI
+name: Diceware CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -29,6 +29,8 @@ jobs:
         script: |
           pwd
           cd diceware
+          pwd
+          ls
           flutter run test/widget_test.dart
     - uses: maierj/fastlane-action@v1.4.0
       with:
