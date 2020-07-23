@@ -25,12 +25,8 @@ jobs:
     - uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        #working-directory: diceware
+        working-directory: diceware
         script: |
-          pwd
-          cd diceware
-          pwd
-          ls
           flutter run test/widget_test.dart
     - uses: maierj/fastlane-action@v1.4.0
       with:
