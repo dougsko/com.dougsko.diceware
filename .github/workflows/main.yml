@@ -27,8 +27,8 @@ jobs:
         api-level: 29
         #working-directory: diceware
         script: |
+          pwd
           cd diceware
-          touch android/key.properties
           flutter run test/widget_test.dart
     - uses: maierj/fastlane-action@v1.4.0
       with:
