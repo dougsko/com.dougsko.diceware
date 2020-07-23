@@ -22,6 +22,8 @@ jobs:
         flutter-version: '1.17.5'
     - run: flutter pub get
       working-directory: diceware
+    - run: touch key.properties
+      working-directory: diceware/android  
     - uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
