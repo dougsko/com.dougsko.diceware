@@ -29,10 +29,11 @@ jobs:
     - uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 30
-        working-directory: diceware/android
+        working-directory: diceware
+        script: flutter run test/widget_test.dart
     - uses: maierj/fastlane-action@v1.4.0
       with:
-        lane: 'test'
+        lane: 'beta'
         subdirectory: 'diceware/android'
     #- name: Create a Release APK
     #  uses: ncipollo/release-action@v1
