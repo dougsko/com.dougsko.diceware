@@ -26,6 +26,7 @@ jobs:
       with:
         flutter-version: '1.17.5'
     - run: flutter pub get
+      working-directory: diceware
     - run: flutter test
       working-directory: diceware
     #- uses: reactivecircus/android-emulator-runner@v2
