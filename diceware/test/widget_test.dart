@@ -29,6 +29,7 @@ void main() async {
 
   // this works if you run it on a device with 'flutter run test/widget_test.dart'
   // otherwise, it doesn't load the dict assets properly
+
   /*
   testWidgets('test basic functionality', (WidgetTester tester) async {
     await tester.pumpWidget(Diceware());
@@ -47,5 +48,6 @@ void main() async {
     await tester.pumpAndSettle();
     expect(find.text('a'), findsNothing);
   });
-   */
+  */
+
 }
