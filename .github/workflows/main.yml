@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build APK
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v1
@@ -26,6 +26,9 @@ jobs:
     #  working-directory: ./diceware
     #- run: flutter build appbundle
     #  working-directory: ./diceware
+    - uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 30
     - uses: maierj/fastlane-action@v1.4.0
       with:
         lane: 'test'
