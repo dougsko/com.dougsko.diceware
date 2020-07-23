@@ -43,4 +43,4 @@ jobs:
     #  with:
     #            tag: "latest"
     #    artifacts: "build/app/outputs/apk/debug/*.apk"
-    #    token: ${{ secrets.TOKEN_NAME }}
+    ##    token: ${{ secrets.TOKEN_NAME }}
