@@ -19,7 +19,7 @@ default_platform(:android)
 platform :android do
   desc "Runs all the tests"
   lane :test do
-    sh "flutter run test/widget_test.dart"
+    sh "flutter run --no-hot test/widget_test.dart"
   end
 
   #desc "Submit a new Beta Build to Crashlytics Beta"
