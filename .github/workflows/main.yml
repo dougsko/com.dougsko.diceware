@@ -29,6 +29,7 @@ jobs:
     - uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 30
+        working-directory: diceware/android
     - uses: maierj/fastlane-action@v1.4.0
       with:
         lane: 'test'
