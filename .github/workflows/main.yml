@@ -38,6 +38,7 @@ jobs:
         with:
             branch: internal
             commit_message: version bump
+            token: ${{ secrets.GITHUB_TOKEN }}
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
