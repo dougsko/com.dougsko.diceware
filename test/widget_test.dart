@@ -27,6 +27,22 @@ void main() async {
     expect(find.byIcon(Icons.help), findsOneWidget);
   });
 
+  testWidgets('Help dialog opens and closes', (WidgetTester tester) async {
+    await tester.pumpWidget(Diceware());
+
+    // open
+    await tester.tap(find.byIcon(Icons.help));
+    await tester.pump();
+    expect(find.text('How to use Diceware'), findsOneWidget);
+
+    // close
+    await tester.tap(find.text('Close'));
+    await tester.pump();
+    expect(find.text('How to use Diceware'), findsNothing);
+
+  });
+
+
   // this works if you run it on a device with 'flutter run test/widget_test.dart'
   // otherwise, it doesn't load the dict assets properly
 
