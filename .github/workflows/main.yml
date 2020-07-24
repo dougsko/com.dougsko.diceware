@@ -27,9 +27,12 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build appbundle
-      - run: python3 increment_version.py
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7.5
+      - run: python increment_version.py
         working-directory:  android
-      - run: python3 autoincrement.py
+      - run: python autoincrement.py
         working-directory: android/app/src/main
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
