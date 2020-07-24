@@ -36,6 +36,7 @@ jobs:
         working-directory: android/app/src/main
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
+            branch: internal
             commit_message: version bump
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
