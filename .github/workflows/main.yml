@@ -12,7 +12,6 @@ jobs:
     name: Build Appbundle
     runs-on: macos-latest
     steps:
-      - name: Checkout
       - uses: actions/checkout@v1
       - run: |
           echo "${{ secrets.PROPS_FILE }}" > key.properties.asc
@@ -23,7 +22,6 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - name: Flutter test
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '1.17.5'
@@ -35,7 +33,6 @@ jobs:
       #    working-directory: diceware
       #    script: |
       #      flutter run test/widget_test.dart
-      - name: Build and release to internal track
       - uses: maierj/fastlane-action@v1.4.0
         with:
           lane: 'internal'
