@@ -37,6 +37,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
             branch: internal
+            file_pattern: android/*
             commit_message: version bump
             commit_username: dougsko
       - run: flutter build appbundle
