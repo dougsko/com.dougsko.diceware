@@ -25,9 +25,9 @@ jobs:
       with:
         flutter-version: '1.17.5'
     - run: flutter pub get
-      working-directory: diceware
+      #working-directory: diceware
     - run: flutter test
-      working-directory: diceware
+      #working-directory: diceware
     #- uses: reactivecircus/android-emulator-runner@v2
     #  with:
     #    api-level: 29
@@ -37,7 +37,7 @@ jobs:
     - uses: maierj/fastlane-action@v1.4.0
       with:
         lane: 'beta'
-        subdirectory: 'diceware/android'
+        subdirectory: 'android'
         skip-tracking: 'true'
     #- name: Create a Release APK
     #  uses: ncipollo/release-action@v1
