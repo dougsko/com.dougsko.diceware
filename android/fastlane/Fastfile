@@ -39,6 +39,6 @@ platform :android do
 
   lane :beta do
     sh "flutter build appbundle"
-    #upload_to_play_store(track: 'beta', aab: '../build/app/outputs/bundle/release/app-release.aab', rollout: '0.5')
+    upload_to_play_store(track: 'internal', aab: '../build/app/outputs/bundle/release/app-release.aab')
   end
 end
