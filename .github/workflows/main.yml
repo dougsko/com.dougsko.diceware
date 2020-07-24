@@ -16,10 +16,10 @@ jobs:
       - run: |
           echo "${{ secrets.PROPS_FILE }}" > key.properties.asc
           echo "${{ secrets.KEYSTORE }}" > publish_keystore.asc
-          echo "${{ secrets.JSON_KEY_DATA }}" > key_data.json.asc
           gpg -d --passphrase "${{ secrets.PROPS_FILE_PASSWORD }}" --batch key.properties.asc > android/key.properties
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASS }}" --batch publish_keystore.asc > android/app/publish_keystore
-          export JSON_KEY_DATA=`gpg -d --passphrase "${{ secrets.PROPS_FILE_PASSWORD }}" --batch --output -`
+      - env:
+          - JSON_KEY_DATA: `gpg -d --passphrase "${{ secrets.PROPS_FILE_PASSWORD }}" --batch --output - "${{ secrets.JSON_KEY_DATA }}"`
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
@@ -39,7 +39,6 @@ jobs:
           lane: 'internal'
           subdirectory: 'android'
           skip-tracking: 'true'
-    #- name: Create a Release Appbundle
     #  uses: ncipollo/release-action@v1
     #  with:
     #            tag: "latest"
