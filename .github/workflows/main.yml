@@ -38,6 +38,8 @@ jobs:
           lane: 'internal'
           subdirectory: 'android'
           skip-tracking: 'true'
+        env:
+          JSON_KEY_DATA: ${{ secrets.JSON_KEY_DATA }}
     #  uses: ncipollo/release-action@v1
     #  with:
     #            tag: "latest"
