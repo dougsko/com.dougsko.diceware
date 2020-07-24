@@ -26,8 +26,15 @@ jobs:
           flutter-version: '1.17.5'
       - run: flutter pub get
       - run: flutter test
-      #- run: python autoincrement.py
-      #  - working-directory: android/app/src/main
+      - run: flutter build appbundle
+      - run: python3 increment_version.py
+        - working-directory: android
+      - run: python3 autoincrement.py
+        - working-directory: android/app/src/main
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        - with:
+            commit_message: version bump
+      - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
           lane: 'internal'
