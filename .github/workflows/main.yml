@@ -4,9 +4,9 @@ name: Diceware CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ internal ]
   pull_request:
-    branches: [ master ]
+    branches: [ internal ]
 jobs:
   build:
     name: Build APK
