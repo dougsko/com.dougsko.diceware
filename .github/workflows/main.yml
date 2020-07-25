@@ -34,6 +34,9 @@ jobs:
           python-version: 3.7
       - run: python increment_version.py
         working-directory:  android
+      - run: git remote set-url origin https://$TOKEN:x-oauth-basic@github.com/$GITHUB_REPOSITORY
+        env:
+          TOKEN: ${{ secrets.PAT }}
       - uses: stefanzweifel/git-auto-commit-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
@@ -44,7 +47,6 @@ jobs:
           commit_user_name: dougsko
           commit_user_email: dougtko@gmail.com
           commit_author: Doug Prostko <dougtko@gmail.com>
-          token: ${{ secrets.PAT }}
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
