@@ -42,6 +42,8 @@ jobs:
           commit_message: 'bump version'
           file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
           commit_user_name: dougsko
+          commit_user_email: dougtko@gmail.com
+          commit_author: Doug Prostko <dougtko@gmail.com>
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
