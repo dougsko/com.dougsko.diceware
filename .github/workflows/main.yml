@@ -37,7 +37,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
             branch: internal
-            file_pattern: android/*
+            file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
             commit_message: version bump
             commit_username: dougsko
       - run: flutter build appbundle
