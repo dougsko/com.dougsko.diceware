@@ -34,12 +34,7 @@ jobs:
           python-version: 3.7
       - run: python increment_version.py
         working-directory:  android
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-            branch: internal
-            file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
-            commit_message: version bump
-            commit_username: dougsko
+      - run: git commit -am 'version bump'
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
