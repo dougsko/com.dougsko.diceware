@@ -38,9 +38,6 @@ platform :android do
   end
 
   lane :internal do
-    sh "flutter test"
-    sh "flutter pub get"
-    sh "flutter build appbundle"
     upload_to_play_store(track: 'internal', aab: '../build/app/outputs/bundle/release/app-release.aab', json_key_data: "#{ENV['JSON_KEY_DATA']}")
   end
 end
