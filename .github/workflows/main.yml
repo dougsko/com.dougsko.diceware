@@ -34,14 +34,12 @@ jobs:
           python-version: 3.7
       - run: python increment_version.py
         working-directory:  android
-      - uses: github-actions-x/commit@v2.6
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'internal'
-          commit-message: 'bump version'
-          #force-add: 'true'
-          files: android/local.properties android/app/src/main/AndroidManifest.xml
-          #name: Doug Prostko
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'internal'
+          commit_message: 'bump version'
+          file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
