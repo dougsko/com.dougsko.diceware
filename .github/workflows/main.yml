@@ -41,6 +41,7 @@ jobs:
           branch: 'internal'
           commit_message: 'bump version'
           file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
+          commit_user_name: dougsko
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
