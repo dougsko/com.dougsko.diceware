@@ -29,40 +29,40 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build appbundle
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      - run: python increment_version.py
-        working-directory:  android
-      - run: git remote set-url origin https://$TOKEN:x-oauth-basic@github.com/$GITHUB_REPOSITORY
-        env:
-          TOKEN: ${{ secrets.PAT }}
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        with:
-          branch: 'internal'
-          commit_message: 'bump version'
-          file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
-          commit_user_name: dougsko
-          commit_user_email: dougtko@gmail.com
-          commit_author: Doug Prostko <dougtko@gmail.com>
-      - uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.PAT }}
-      - run: |
-          echo "${{ secrets.PROPS_FILE }}" > key.properties.asc
-          echo "${{ secrets.KEYSTORE }}" > publish_keystore.asc
-          gpg -d --passphrase "${{ secrets.PROPS_FILE_PASSWORD }}" --batch key.properties.asc > android/key.properties
-          gpg -d --passphrase "${{ secrets.KEYSTORE_PASS }}" --batch publish_keystore.asc > android/app/publish_keystore
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '1.17.5'
-      - run: flutter pub get
-      - run: flutter build appbundle
+      #- uses: actions/setup-python@v2
+      #  with:
+      #    python-version: 3.7
+      #- run: python increment_version.py
+      #  working-directory:  android
+      #- run: git remote set-url origin https://$TOKEN:x-oauth-basic@github.com/$GITHUB_REPOSITORY
+      #  env:
+      #    TOKEN: ${{ secrets.PAT }}
+      #- uses: stefanzweifel/git-auto-commit-action@v4
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.PAT }}
+      #  with:
+      #    branch: 'internal'
+      #    commit_message: 'bump version'
+      #    file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
+      #    commit_user_name: dougsko
+      #    commit_user_email: dougtko@gmail.com
+      #    commit_author: Doug Prostko <dougtko@gmail.com>
+      #- uses: actions/checkout@v1
+      #  with:
+      #    token: ${{ secrets.PAT }}
+      #- run: |
+      #    echo "${{ secrets.PROPS_FILE }}" > key.properties.asc
+      #    echo "${{ secrets.KEYSTORE }}" > publish_keystore.asc
+      #    gpg -d --passphrase "${{ secrets.PROPS_FILE_PASSWORD }}" --batch key.properties.asc > android/key.properties
+      #    gpg -d --passphrase "${{ secrets.KEYSTORE_PASS }}" --batch publish_keystore.asc > android/app/publish_keystore
+      #- uses: actions/setup-java@v1
+      #  with:
+      #    java-version: '12.x'
+      #- uses: subosito/flutter-action@v1
+      #  with:
+      #    flutter-version: '1.17.5'
+      #- run: flutter pub get
+      #- run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
           lane: 'internal'
