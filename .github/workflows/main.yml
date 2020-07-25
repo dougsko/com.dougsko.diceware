@@ -34,9 +34,12 @@ jobs:
           python-version: 3.7
       - run: python increment_version.py
         working-directory:  android
+      - run: git remote set-url origin https://$TOKEN:x-oauth-basic@github.com/$GITHUB_REPOSITORY
+        env:
+          TOKEN: ${{ secrets.PAT }}
       - uses: stefanzweifel/git-auto-commit-action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           branch: 'internal'
           commit_message: 'bump version'
