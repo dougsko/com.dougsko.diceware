@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           echo "${{ secrets.PROPS_FILE }}" > key.properties.asc
           echo "${{ secrets.KEYSTORE }}" > publish_keystore.asc
@@ -35,8 +35,9 @@ jobs:
       - run: python increment_version.py
         working-directory:  android
       - uses: stefanzweifel/git-auto-commit-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'internal'
           commit_message: 'bump version'
           file_pattern: android/local.properties android/app/src/main/AndroidManifest.xml
