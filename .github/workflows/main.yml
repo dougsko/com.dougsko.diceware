@@ -36,7 +36,7 @@ jobs:
         working-directory:  android
       - uses: stefanzweifel/git-auto-commit-action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           branch: 'internal'
           commit_message: 'bump version'
@@ -44,6 +44,7 @@ jobs:
           commit_user_name: dougsko
           commit_user_email: dougtko@gmail.com
           commit_author: Doug Prostko <dougtko@gmail.com>
+          token: ${{ secrets.PAT }}
       - run: flutter build appbundle
       - uses: maierj/fastlane-action@v1.4.0
         with:
