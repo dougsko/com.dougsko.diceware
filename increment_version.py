@@ -8,7 +8,7 @@ from xml.dom.minidom import parse
 with open("pubspec.yaml") as f:
     for line in f.readlines():
         option = line.split(":")
-        print(option)
+        #print(option)
         if option[0] == "version":
             version = option[1].split("+")
             versionName = version[0].lstrip()
