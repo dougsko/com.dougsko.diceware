@@ -24,8 +24,8 @@ jobs:
         with:
           java-version: '12.x'
       - uses: actions/setup-python@v2
-          with:
-            python-version: 3.7.3
+        with:
+          python-version: 3.7.3
         run: |
           - python ./increment_version.py
       - uses: subosito/flutter-action@v1
