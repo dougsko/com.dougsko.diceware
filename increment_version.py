@@ -8,7 +8,7 @@ from xml.dom.minidom import parse
 with open("pubspec.yaml") as f:
     for line in f.readlines():
         option = line.split(":")
-        #print(option)
+        # print(option)
         if option[0] == "version":
             version = option[1].split("+")
             versionName = version[0].lstrip()
@@ -19,6 +19,3 @@ dom1.documentElement.setAttribute("android:versionName", versionName)
 dom1.documentElement.setAttribute("android:versionCode", versionCode)
 with open("android/app/src/main/AndroidManifest.xml", 'w') as f:
     dom1.writexml(f)
-
-
-
