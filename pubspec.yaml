@@ -19,7 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^0.17.3+1
+  #flutter_svg: ^0.17.3+1
+  flutter_svg: ^0.18.0
   http: 0.12.0+3
   flutter_launcher_icons: 0.7.4
 
@@ -32,6 +33,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+#dependency_overrides:
+#  image: last_version
+#  xml: last_version
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -52,20 +56,20 @@ flutter:
     - assets/dice-4.svg
     - assets/dice-5.svg
     - assets/dice-6.svg
-    - assets/dictionaries/alphanumeric.json
-    - assets/dictionaries/alt_english.json
-    - assets/dictionaries/ascii.json
-    - assets/dictionaries/catalan.json
-    - assets/dictionaries/dutch.json
-    - assets/dictionaries/eff.json
-    - assets/dictionaries/esperanto.json
-    - assets/dictionaries/eyeware.json
-    - assets/dictionaries/german.json
-    - assets/dictionaries/polish.json
-    - assets/dictionaries/spanish.json
-    - assets/dictionaries/std_english.json
-    - assets/dictionaries/swedish.json
-    - assets/dictionaries/japanese.json
+    - assets/dictionaries/alphanumeric.json.gz
+    - assets/dictionaries/alt_english.json.gz
+    - assets/dictionaries/ascii.json.gz
+    - assets/dictionaries/catalan.json.gz
+    - assets/dictionaries/dutch.json.gz
+    - assets/dictionaries/eff.json.gz
+    - assets/dictionaries/esperanto.json.gz
+    - assets/dictionaries/eyeware.json.gz
+    - assets/dictionaries/german.json.gz
+    - assets/dictionaries/polish.json.gz
+    - assets/dictionaries/spanish.json.gz
+    - assets/dictionaries/std_english.json.gz
+    - assets/dictionaries/swedish.json.gz
+    - assets/dictionaries/japanese.json.gz
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
