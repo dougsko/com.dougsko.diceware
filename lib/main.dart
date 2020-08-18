@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'dart:convert';
 import 'dart:math';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +13,7 @@ import 'roll_types.dart';
 void main() => runApp(Diceware());
 
 class Diceware extends StatelessWidget {
-    // This widget is the root of your application.
+  // This widget is the root of your application.
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
@@ -181,43 +183,41 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     void setLang(String lang) async {
         String dictPath;
         if(lang == 'Standard English') {
-            dictPath = 'assets/dictionaries/std_english.json';
+            dictPath = 'assets/dictionaries/std_english.json.gz';
         } else if(lang == 'Alternative English') {
-            dictPath = 'assets/dictionaries/alt_english.json';
+            dictPath = 'assets/dictionaries/alt_english.json.gz';
         } else if(lang == 'Catalan') {
-            dictPath = 'assets/dictionaries/catalan.json';
+            dictPath = 'assets/dictionaries/catalan.json.gz';
         } else if(lang == 'Dutch') {
-            dictPath = 'assets/dictionaries/dutch.json';
+            dictPath = 'assets/dictionaries/dutch.json.gz';
         } else if(lang == 'EFF') {
-            dictPath = 'assets/dictionaries/eff.json';
+            dictPath = 'assets/dictionaries/eff.json.gz';
         } else if(lang == 'Esperanto') {
-            dictPath = 'assets/dictionaries/esperanto.json';
+            dictPath = 'assets/dictionaries/esperanto.json.gz';
         } else if(lang == 'Eyeware') {
-            dictPath = 'assets/dictionaries/eyeware.json';
+            dictPath = 'assets/dictionaries/eyeware.json.gz';
         } else if(lang == 'German') {
-            dictPath = 'assets/dictionaries/german.json';
+            dictPath = 'assets/dictionaries/german.json.gz';
         } else if(lang == 'Japanese') {
-            dictPath = 'assets/dictionaries/japanese.json';
+            dictPath = 'assets/dictionaries/japanese.json.gz';
         } else if(lang == 'Polish') {
-            dictPath = 'assets/dictionaries/polish.json';
+            dictPath = 'assets/dictionaries/polish.json.gz';
         } else if(lang == 'Spanish') {
-            dictPath = 'assets/dictionaries/spanish.json';
-        } else if(lang == 'Swedish') {
-            dictPath = 'assets/dictionaries/swedish.json';
-        } else if(lang == 'ASCII') {
-            dictPath = 'assets/dictionaries/ascii.json';
-        } else if(lang == 'Alphanumeric') {
-            dictPath = 'assets/dictionaries/alphanumeric.json';
-        } else if(lang == 'Numbers') {
+            dictPath = 'assets/dictionaries/spanish.json.gz';
+        } else if (lang == 'Swedish') {
+            dictPath = 'assets/dictionaries/swedish.json.gz';
+        } else if (lang == 'ASCII') {
+            dictPath = 'assets/dictionaries/ascii.json.gz';
+        } else if (lang == 'Alphanumeric') {
+            dictPath = 'assets/dictionaries/alphanumeric.json.gz';
+        } else if (lang == 'Numbers') {
             return;
         }
 
-        Map langMap = await rootBundle.loadStructuredData(dictPath, (String s) async {
-            return json.decode(s);
-        });
-
-        roll.dict = langMap;
-        //print(roll.dict['12345']);
+        var gzip = GZipCodec();
+        ByteData dictData = await rootBundle.load(dictPath);
+        Uint8List dictBytes = dictData.buffer.asUint8List();
+        roll.dict = json.decode(utf8.decode(gzip.decode(dictBytes)));
     }
 
     Container generateOutputSection() {
