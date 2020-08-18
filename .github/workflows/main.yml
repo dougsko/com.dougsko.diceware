@@ -5,8 +5,8 @@ name: Diceware CI
 on:
   push:
     branches: [ internal ]
-  pull_request:
-    branches: [ internal ]
+    #pull_request:
+    #branches: [ internal ]
 jobs:
   build:
     name: Build Appbundle
