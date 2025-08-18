@@ -13,8 +13,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
       - run: |
           echo "${{ secrets.PROPS_FILE }}" > key.properties.asc
           echo "${{ secrets.KEYSTORE }}" > publish_keystore.asc
