@@ -12,7 +12,7 @@ jobs:
     name: Build Appbundle
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}
       - run: |
@@ -20,20 +20,20 @@ jobs:
           echo "${{ secrets.KEYSTORE }}" > publish_keystore.asc
           gpg -d --passphrase "${{ secrets.PROPS_FILE_PASSWORD }}" --batch key.properties.asc > android/key.properties
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASS }}" --batch publish_keystore.asc > android/app/publish_keystore
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v4
         with:
-          java-version: '12.x'
-      - uses: actions/setup-python@v2
+          java-version: '17'
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.7.5
+          python-version: '3.11'
       - run: python ./increment_version.py
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '1.20.0'
+          flutter-version: '3.13.2'
       - run: flutter pub get
       - run: flutter test
       - run: flutter build appbundle
-      - uses: maierj/fastlane-action@v1.4.0
+      - uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'internal'
           subdirectory: 'android'

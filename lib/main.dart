@@ -1,8 +1,6 @@
-import 'dart:ui';
 import 'dart:convert';
 import 'dart:math';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +18,7 @@ class Diceware extends StatelessWidget {
             title: 'Diceware',
             theme: ThemeData(
                 primarySwatch: Colors.green,
-                accentColor: Colors.green,
-                brightness: Brightness.dark,
+                colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green, brightness: Brightness.dark).copyWith(secondary: Colors.green),
             ),
             home: StatefulHome(),
         );
@@ -42,13 +39,13 @@ class ClipButton extends StatelessWidget {
                         color: Colors.green,
                         onPressed: () {
                             if (text == '') {
-                                Scaffold.of(context).showSnackBar(new SnackBar(
-                                    content: new Text(text + "Nothing to copy"),
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(text + "Nothing to copy"),
                                 ));
                             } else {
-                                Clipboard.setData(new ClipboardData(text: text));
-                                Scaffold.of(context).showSnackBar(new SnackBar(
-                                    content: new Text(text + " Copied to clipboard"),
+                                Clipboard.setData(ClipboardData(text: text));
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(text + " Copied to clipboard"),
                                 ));
                             }
                         },
@@ -61,7 +58,7 @@ class ClipButton extends StatelessWidget {
 }
 
 class StatefulHome extends StatefulWidget {
-    StatefulHome({Key key}) : super(key: key);
+    StatefulHome({Key? key}) : super(key: key);
 
     @override
     _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
@@ -88,14 +85,14 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
         'Swedish'
     ];
     var outputTypes = ['Words', 'ASCII', 'Alphanumeric', 'Numbers'];
-    Widget langDropdown;
+    Widget? langDropdown;
 
     _MyStatefulWidgetState() {
         setLang('Standard English');
     }
 
     void displaySnackBar(String text) {
-        _scaffoldKey.currentState.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(text)));
     }
 
@@ -109,7 +106,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
 
     Future<Response> randomOrg() async {
         String url = 'https://www.random.org/integers/?num=' + roll.numRollsNeeded.toString() + '&min=1&max=6&col=1&base=10&format=plain';
-        var response = await get(url);
+        var response = await get(Uri.parse(url));
         return response;
     }
 
@@ -181,7 +178,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     }
 
     void setLang(String lang) async {
-        String dictPath;
+        String? dictPath;
         if(lang == 'Standard English') {
             dictPath = 'assets/dictionaries/std_english.json.gz';
         } else if(lang == 'Alternative English') {
@@ -214,13 +211,15 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
             return;
         }
 
-        var gzip = GZipCodec();
-        ByteData dictData = await rootBundle.load(dictPath);
-        Uint8List dictBytes = dictData.buffer.asUint8List();
-        roll.dict = json.decode(utf8.decode(gzip.decode(dictBytes)));
+        if (dictPath != null) {
+            var gzip = GZipCodec();
+            ByteData dictData = await rootBundle.load(dictPath);
+            Uint8List dictBytes = dictData.buffer.asUint8List();
+            roll.dict = json.decode(utf8.decode(gzip.decode(dictBytes)));
+        }
     }
 
-    Container generateOutputSection() {
+    Widget generateOutputSection() {
         Widget outputSection = Container(
             padding: new EdgeInsets.all(10),
             //top: 10,
@@ -274,7 +273,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
     }
 
     Expanded generateDieButton(String number) {
-        String asset;
+        String? asset;
         switch (number) {
             case '1':
                 asset = 'assets/dice-1.svg';
@@ -301,8 +300,8 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                 //materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 padding: EdgeInsets.all(0),
                 child: SvgPicture.asset(
-                    asset,
-                    color: Colors.green,
+                    asset!,
+                    colorFilter: const ColorFilter.mode(Colors.green, BlendMode.srcIn),
                     semanticsLabel: 'dice',
                     height: 50,
                     width: 50,
@@ -404,9 +403,9 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                                 value: langValue,
                                 //icon: Icon(Icons.language),
                                 isExpanded: false,
-                                onChanged: (String newValue) {
+                                onChanged: (String? newValue) {
                                     setState(() {
-                                        langValue = newValue;
+                                        langValue = newValue!;
                                         var oldPassphrase = roll.passphrase;
                                         roll = WordRoll(langValue);
                                         setLang(langValue);
@@ -461,9 +460,9 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                         child: DropdownButton<String>(
                             value: outputTypeValue,
                             isExpanded: false,
-                            onChanged: (String newValue) {
+                            onChanged: (String? newValue) {
                                 setState(() {
-                                    outputTypeValue = newValue;
+                                    outputTypeValue = newValue!;
                                     var oldPassphrase = roll.passphrase;
                                     if (outputTypeValue == 'Words') {
                                         roll = WordRoll(langValue);
@@ -570,8 +569,8 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                         ),
                         actions: <Widget>[
                             // usually buttons at the bottom of the dialog
-                            new FlatButton(
-                                child: new Text("Close"),
+                            TextButton(
+                                child: const Text("Close"),
                                 onPressed: () {
                                     Navigator.of(context).pop();
                                 },
@@ -612,7 +611,7 @@ class _MyStatefulWidgetState extends State<StatefulHome> {
                                         dieButtons,
                                         randomButtons,
                                         outputType,
-                                        langDropdown,
+                                        if (langDropdown != null) langDropdown!,
                                         clearCopy,
                                     ],
                                 ),

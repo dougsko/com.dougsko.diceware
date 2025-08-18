@@ -1,6 +1,6 @@
 class Roll {
     String type;
-    int numRollsNeeded;
+    late int numRollsNeeded;
     int numRollsSoFar = 0;
     List<String> roll = [];
     var dict;

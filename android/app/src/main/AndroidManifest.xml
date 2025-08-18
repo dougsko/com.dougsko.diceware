@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest android:versionCode="33" android:versionName="3.0.3" package="com.dougsko.diceware" xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" ?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="37" android:versionName="3.0.5" package="com.dougsko.diceware">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
@@ -6,13 +6,19 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
-    <application android:icon="@mipmap/ic_launcher" android:label="Diceware" android:name="io.flutter.app.FlutterApplication">
-        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:launchMode="singleTop" android:name=".MainActivity" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize">
-            <!-- This keeps the window background of the activity showing
-                 until Flutter renders its first frame. It can be removed if
-                 there is no splash screen (such as the default splash screen
-                 defined in @style/LaunchTheme). -->
-            <meta-data android:name="io.flutter.app.android.SplashScreenUntilFirstFrame" android:value="false"/>
+    <application android:icon="@mipmap/ic_launcher" android:label="Diceware">
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:launchMode="singleTop" android:name=".MainActivity" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize" android:exported="true">
+            <!-- Displays an Android View that continues showing the launch screen
+                 Drawable until Flutter paints its first frame, then this splash
+                 screen fades out. A splash screen is useful to avoid any visual
+                 gap between the end of Android's launch screen and the painting of
+                 Flutter's first frame. -->
+            <meta-data android:name="io.flutter.embedding.android.SplashScreenDrawable" android:resource="@drawable/launch_background"/>
+            <!-- Required to query activities that can process text, see:
+                 https://developer.android.com/training/package-visibility and
+                 https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+                 In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+            <meta-data android:name="flutterEmbedding" android:value="2"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
