@@ -32,11 +32,13 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build appbundle
+      - run: |
+          cd android
+          bundle install
       - uses: maierj/fastlane-action@v3.0.0
         with:
           lane: 'internal'
           subdirectory: 'android'
-          skip-tracking: 'true'
         env:
           JSON_KEY_DATA: ${{ secrets.JSON_KEY_DATA }}
     #  uses: ncipollo/release-action@v1
